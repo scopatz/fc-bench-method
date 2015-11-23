@@ -2,7 +2,12 @@
 \label{intro}
 The act of fuel cycle benchmarking has long faced methodological issues 
 on what metrics to compare, how to compare them, and at what point in the
-fuel cycle they should be compared. This is partly because such activities 
+fuel cycle they should be compared. The benchmarking mechanism described 
+here couples Gaussian process models (GP) to dynamic time warping (DTW).
+Together these address how to perform fundemental tasks for common nuclear
+fuel cycle benchmarking. 
+
+Confusion in this area is partly because such activities 
 are not benchmarking in the strictess validation sense. Most fuel
 cycle benchmarks are more correctly called code-to-code comparisons or 
 inter-code comparisons, as they compare simultor results. Importantly, 
@@ -46,7 +51,29 @@ in a transion scenario, it could defeat the purpose of the benchmark to
 force different simulators to have the same time-to-transition if they 
 nominally would have had distinct. 
  
+The mechanisms used for benchmarking that have been discussed so far typically
+do not incorporate modeling uncertainy coming from the simulator itself.
+This is likely because most simulators do not compute uncertainty on their 
+own. Instead they rely on perturbation studies or stochatic wrappers around 
+the simulator. Furthermore, metrics may add their own uncertainty from the 
+data that the bring in (half-lives, cross-sections, etc.) and the 
+operations they perform. However, even if such error bars were available for
+every point in a time series metric, the benchmark FOM calculation would 
+ignore them.
 
+The method described in this paper addresses all of the above issues that 
+in a way that a dynamic fuel cycle benchmark will be able to use on the 
+metrics of interest. It is important to note, though, that most fuel cycle 
+metrics are time series and can be derived from the mass balances. 
+Furthermore, most metrics have an associated total metric that can be 
+computed from the linear combination of all of its constituent features. 
+For example, total mass flows are the sum of the mass flow of each nuclide
+and total power generated is the sum of the power from each reactor type 
+(such as LWRs and FRs).  These attributes are common to the overwhelming 
+majority of fuel cycle metrics.
 
+GP
+
+DTW
 
 Such as cyclus \cite{cyclus_v1_2}.
