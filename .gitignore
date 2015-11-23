@@ -56,3 +56,22 @@ docs/_build/
 
 # PyBuilder
 target/
+*.aux
+*.acn
+*.bbl
+*.blg
+*.dvi
+*.glo
+*.ist
+*.log
+*.pdf
+paper.spl
+paper.4ct
+paper.4tc
+paper.css
+paper.html
+paper.idv
+paper.lg
+paper.tmp
+paper.xref
+paper*.png
