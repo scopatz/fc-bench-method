@@ -34,7 +34,18 @@ different at every other point in time.  It should be noted that
 Equillibrium and quasi-static fuel cycle simulators are sometimes able to 
 ignore these issues, because all time points are treated equally.
 
-Some dynamic FOMs do exist. 
+Some dynamic FOMs do exist. However, these typically require that the metric
+data be too well-behaved for comparison purposes. Consider the case of total
+power produced [GWe]. A FOM could be the sum over time of the relative error 
+between the total power of a single simulator and the root-mean squared total power
+of all the simulators together. However, such an FOM fails if the total power
+time series have different lengths. Such differences could arrise because 
+of different time steps (1 month versus 1 year) or because of different 
+simulation durations. Suppose that a comparison is posed as "until transition"
+in a transion scenario, it could defeat the purpose of the benchmark to
+force different simulators to have the same time-to-transition if they 
+nominally would have had distinct. 
+ 
 
 
 
