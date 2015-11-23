@@ -1,1 +1,41 @@
-Such as cyclus \cite{cyclus_v1_2}
+\section{Introduction}
+\label{intro}
+The act of fuel cycle benchmarking has long faced methodological issues 
+on what metrics to compare, how to compare them, and at what point in the
+fuel cycle they should be compared. This is partly because such activities 
+are not benchmarking in the strictess validation sense. Most fuel
+cycle benchmarks are more correctly called code-to-code comparisons or 
+inter-code comparisons, as they compare simultor results. Importantly, 
+these take place in the absence of true experimental data. The number of 
+real-world, industrial scale nuclear fuel cycles that have historically been 
+deployed is not sufficient for statistical accuracy even for the Once-Through 
+sceanario. For other fuel cycles, industrial data is even more stark. 
+Since fuel cycle simulation is thus effectively impossible to validate, 
+we should look to methods non-judgemental methods of benchmarking. The 
+results of any given simulator should be evaluated in reference to how 
+it performs against other simulators in such a way that acknowledges that 
+any and all simulators may demonstrate incorrect behaviour. No simulator
+by fiat produces the `true' or reference case.
+
+The other major conceptual issue with fuel cycle benchmarking is that there 
+is no agreed upon mechanism for establishing a figure-of-merit (FOM) for 
+a metric that is uniform across all metrics of interest. For example, 
+repository heat load may be examined only at the end of the of the simulation,
+separatred plutonium may be used whereever it peaks, and natural uranium 
+mined might be of concern only in 100 years. Comparing at a specific point 
+in time fails to take into account the behaviour of that metric over time and 
+can skew any decisons made based soley on that metric. Additionally, the 
+time of comparison varies based on the metric itself. This is a necessary 
+side effect of picking a single point in time.
+Furthermore, such FOMs are not useful for indicating why simulations differ, 
+only that they do. Moroever, if such FOM match, this does not indicate
+that the simulator actually agree. Their behaviour could be radically 
+different at every other point in time.  It should be noted that 
+Equillibrium and quasi-static fuel cycle simulators are sometimes able to 
+ignore these issues, because all time points are treated equally.
+
+Some dynamic FOMs do exist. 
+
+
+
+Such as cyclus \cite{cyclus_v1_2}.
