@@ -22,7 +22,7 @@ m^s(t) = \sum_i^I m_i^s(t)
 \end{equation}
 Thus $m^s(t)$ is the total metric over all constituent parts for a given 
 simulator. This linear combination is useful when calculating contributions
-(\S \ref{contributions}) but is not needed to compare various simulators
+(\S \ref{contribution}) but is not needed to compare various simulators
 to a Gaussian process model (\S \ref{dtw}).
 
 Additionallty, call $u_i^s(t)$ the uncertainty or error in the metric 
@@ -37,5 +37,14 @@ simulator, so in practice another strategy is needed.
 The demonstration here will use the generated power from LWRs and FRs in 
 transition scenario covering 200 years. The simulation should start with
 90 GWe generated solely by LWRs and meet a 1\% growth in demand over the 
-lifetime of the simulation. Figure \ref{raw-ts} shows the component time 
+lifetime of the simulation. Figure \ref{gwe-simulators} shows the component time 
 series curves for both DYMOND and Cyclus.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.45\textwidth]{gwe-dymond.eps}
+\includegraphics[width=0.45\textwidth]{gwe-cyclus.eps}
+\caption{The generated power in [GWe] as a function of time for the DYMOND and 
+Cyclus simulators for both LWRs and FRs.}
+\label{gwe-simulators}
+\end{figure}
