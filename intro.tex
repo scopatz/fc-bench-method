@@ -62,7 +62,7 @@ every point in a time series metric, the benchmark FOM calculation would
 ignore them.
 
 The method described in this paper addresses all of the above issues that 
-in a way that a dynamic fuel cycle benchmark will be able to use on the 
+that a dynamic fuel cycle benchmark will be able to use on the 
 metrics of interest. It is important to note, though, that most fuel cycle 
 metrics are time series and can be derived from the mass balances. 
 Furthermore, most metrics have an associated total metric that can be 
@@ -72,8 +72,63 @@ and total power generated is the sum of the power from each reactor type
 (such as LWRs and FRs).  These attributes are common to the overwhelming 
 majority of fuel cycle metrics.
 
-GP
+Gaussian proccess models are proposed here as a method to incorporate 
+metric uncertainties and make the analysis non-judmental to any particular 
+simulator. Roughly speaking, a Gaussian process is a regression technique
+that models the relationship between independent and dependent parameters
+by fitting the covariance to a nominal functional form, or kernel.
+The kernel may have as many or as few fit parameters (also called 
+hyperparameters) as desired. One often used kernel is the squared 
+exponential, or Gaussian distribution, though linear kernels and Gaussian
+noise kernels are also frequently used. 
 
-DTW
+Using this mechanism is desirable because the model can be generated
+from as many simulator results as possible and it will treat each simulators
+results in the same manner. Unlike a relative error analysis, no simulator
+needs to be taken as the base case. The Gaussian process model itself becomes
+the target to compare against. 
+Moreover, the covairances do not need to be known to perform the benchmark.
+They are estimated by the Guassian process. Furthemore, once the 
+hyperparameters are known, this can be used as a representative model for 
+any other time series. Additionally, the incorporation of the uncertainties
+in a gaussian process are known to be more accurate (closer means) than 
+assuming uncorrelated uncertainties.  The trade-off here is that the 
+model is less precise (higher standard deviations) than the uncorrelated 
+case. Such a trade off is likely desirable because no simulator is 
+necessarily more correct than any other simulator. These features are all 
+necessary for inter-code comparisons where an outlier simulator may be the 
+most correct (perhaps it is higher fidelity than the others). Thus it
+becomes important to quantify outliers rather than discard them.
+
+However, a Gaussian process model of a metric for a set of simulators 
+does not directly present itself as a FOM for that metric. Time series go 
+into a Gaussian process and time series come out. The dynamic time warping 
+technique is proposed as a method for deriving FOMs from the models.  
+
+Dynamic time warping computes the minimal distance and path that it would 
+take to convert one time series curve into another. This procedure is highly 
+leveraged in audio processing systems, and especially in speech recognition.
+This is because the two time series that are being compared need not have
+the same time basis.  It does not matter if one time series is longer than 
+the other or if they have different sampling frequencies. The DTW distance
+instead compares the shape the curves themselves. 
+
+There is nothing about DTW that is specific to speech recognition. The method
+may be used in any time series analysis. For nuclear fuel cycle benchmarking,
+the DTW distance can be used to compare the metric from each simulator to 
+Gaussian process model. Using this as an FOM has the advantage of 
+incorporating information from the whole time series, rather than just a 
+specific point in the cycle.
+
+Many benchmarking studies also wish to create a rank ordering of parameter
+importance over all simulators.  For example, ``In a transition scenario,
+which reactor is most important to the total generated power?'' or ``Which
+nuclides are most important to the repository heat load?'' DTW distances 
+of gaussian process models of the constient parameters (eg the power from
+each reactor type) to a Gaussian process model of the total (eg total 
+generated power) can be used as a FOM or to derive other FOMs. This paper
+proposes a novel contribution metric, that is a normalized version of the DTW 
+distance for such rank ordering activities.
+
 
 Such as cyclus \cite{cyclus_v1_2}.
