@@ -130,5 +130,21 @@ generated power) can be used as a FOM or to derive other FOMs. This paper
 proposes a novel contribution metric, that is a normalized version of the DTW 
 distance for such rank ordering activities.
 
+The remainder of this paper takes a narrative approach which walks through 
+a ficticious example benchmarking activity using generated power [GWe] data 
+from DYMOND and Cyclus. The underlying fuel cycle being modeled is an
+LWR to FR transition scenario that occurs over the following 200 years.  
+This data should be regarded as for demonstration purposes only. However, 
+using results from actual fuel cycle simultors shows how the non-judgemental
+benchmarking works in practice. Completely faked data could have been used 
+instead, but this demonstartion is more believable.
 
+In \S \ref{setup}, the problem is setup, mathematical notation is introduced, 
+and the raw simulator data is presented. In \S \ref{gp}, Gaussian process 
+modeling is discussed. In \S \ref{dtw}, the dynamic time warping concept is
+shown. In \S \ref{contribution}, the novel contribution metric is introduced.
+Then in \S \ref{filtering}, the merits of standard time series filtering
+techniques gone over. Finally, \S \ref{conclusion} contains concluding remarks
+and ideas for future work in this area.
+ 
 Such as cyclus \cite{cyclus_v1_2}.
