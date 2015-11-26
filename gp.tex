@@ -19,10 +19,10 @@ mean. Symbolically,
 \label{covar-func}
 k(t, t^\prime) = \E\left[(m_i^s(t) - \mu(t))(m_i^s(t^\prime) - \mu(t^\prime))\right]
 \end{equation}
-The Gaussian process $\GP$ thus approximates the metric for all simulators. This
-is denoted either using functional or operator notation as follows:
+The Gaussian process $\GP$ thus approximates the metric given information from all 
+simulators. This is denoted either using functional or operator notation as follows:
 \begin{equation}
 \label{gp-def-approx}
-m_i(t) \approx \GP(\mu(t), k(t, t^\prime)) \equiv \GP m_i^s
+m_i(t) \approx \GP\left(\mu(t), k(t, t^\prime)\right) \equiv \GP m_i^s
 \end{equation}
 
