@@ -42,8 +42,8 @@ hyperparameters.
 
 Now, define a matrix $K$ such that the element at the $t$-th row and $t^\prime$-th
 column is given by Equation \ref{exp2-kernel}. If a vector of training metric 
-values $\mathbf{m}$ is defined from from all the time series
-given all inputs times $T$, then log likelihood of the obtaining $\mathbf{m}$ 
+values $\mathbf{m}$ is defined by contactenating metrics $m_s^i(t)$ for all simulator
+for all times $T$, then log likelihood of the obtaining $\mathbf{m}$ 
 is seen to be:
 \begin{equation}
 \label{log-p}
@@ -65,6 +65,15 @@ thus seen to be:
 \label{metric-model}
 \mathbf{m}_*(\mathbf{t}_*) = \mathbf{k}_*^\top \left(K + u^2I\right)^{-1}\mathbf{m}
 \end{equation}
+A full derivation of Equations \ref{mean-func}-\ref{metric-model} can be found in 
+\cite{rasmussen2006gaussian}. This resource also contains detailed discussions of 
+how to compute the hyperparameters, efficiently invert the covariance matrix, 
+and compute the model values. 
 
+In practice, however, a number of free and open source implmenetations of Gaussian 
+process regression are readily available. In the Scientific Python ecosystem, both 
+scikit-learn v0.17 \cite{scikit-learn} and George v0.2.1 \cite{hodlr} implement 
+Gaussian process regression. For the remainder of this paper, George is used
+for its superior performance characteristics and easier-to-use interface.
 
 
