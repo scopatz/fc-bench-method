@@ -15,18 +15,18 @@ that will not be examined here is the mass flow, which may be partitioned
 by its individual nuclides or by chemical element.
 
 Now, denote a metric for a given simulator and component as 
-$m_i^s(t)$, which is a function of time $t$. For many metrics of interest 
+$m_s^i(t)$, which is a function of time $t$. For many metrics of interest 
 to nuclear fuel cycle analysis, the following equality holds:
 \begin{equation}
-m^s(t) = \sum_i^I m_i^s(t)
+m_s(t) = \sum_i^I m_s^i(t)
 \end{equation}
-Thus $m^s(t)$ is the total metric over all constituent parts for a given 
+Thus $m_s(t)$ is the total metric over all constituent parts for a given 
 simulator. This linear combination is useful when calculating contributions
 (\S \ref{contribution}) but is not needed to compare various simulators
 to a Gaussian process model (\S \ref{dtw}).
 
-Additionallty, call $u_i^s(t)$ the uncertainty or error in the metric 
-$m_i^s(t)$. Note that $u$ is also a time series for each simulation for 
+Additionallty, call $u_s^i(t)$ the uncertainty or error in the metric 
+$m_s^i(t)$. Note that $u$ is also a time series for each simulation for 
 each component. If uncertainties are not known, this can be set to floating
 point precesion (which states that the metric is as precise as possible) or
 some nominal fraction of the value (10\%, 20\%, etc). It is, of course, 

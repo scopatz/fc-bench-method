@@ -13,16 +13,58 @@ covariance function $k(t, t^\prime)$ is the expected value of the inputs to the
 mean. Symbolically, 
 \begin{equation}
 \label{mean-func}
-\mu(t) = \E\left[m_i^s(t)\right] = \E\left[m_i^0(t), m_i^1(t), \ldots\right]
+\mu(t) = \E\left[m_s^i(t)\right] = \E\left[m_0^i(t), m_1^i(t), \ldots\right]
 \end{equation}
 \begin{equation}
 \label{covar-func}
-k(t, t^\prime) = \E\left[(m_i^s(t) - \mu(t))(m_i^s(t^\prime) - \mu(t^\prime))\right]
+k(t, t^\prime) = \E\left[(m_s^i(t) - \mu(t))(m_s^i(t^\prime) - \mu(t^\prime))\right]
 \end{equation}
 The Gaussian process $\GP$ thus approximates the metric given information from all 
 simulators. This is denoted either using functional or operator notation as follows:
 \begin{equation}
 \label{gp-def-approx}
-m_i(t) \approx \GP\left(\mu(t), k(t, t^\prime)\right) \equiv \GP m_i^s
+m^i(t) \approx \GP\left(\mu(t), k(t, t^\prime)\right) \equiv \GP m_s^i
 \end{equation}
+
+For Gaussian process regression, a functional form for $k$ needs to be provided.
+This representative is sometimes called a kernel function and has free parameters 
+for the regression called \emph{hyperparameters}. How hyperparameters are defined is 
+tied to the kernel function itself. The values for the hyperparameters are determined
+via optimization of the maximal likelihood of the value of the metric function.
+While there are many possible kernels, a standard and generically applicable one 
+is the exponential squared kernel, as seen in Equation \ref{exp2-kernel}:
+\begin{equation}
+\label{exp2-kernel}
+k(t, t^\prime) = \sigma^2 \exp\left[-\frac{1}{2\ell}(t - t^\prime)^2 \right]
+\end{equation}
+Here, the length scale $\ell$ and the signal variance $\sigma^2$ are the 
+hyperparameters.
+
+Now, define a matrix $K$ such that the element at the $t$-th row and $t^\prime$-th
+column is given by Equation \ref{exp2-kernel}. If a vector of training metric 
+values $\mathbf{m}$ is defined from from all the time series
+given all inputs times $T$, then log likelihood of the obtaining $\mathbf{m}$ 
+is seen to be:
+\begin{equation}
+\label{log-p}
+\log p(\mathbf{m}|T) = -\frac{1}{2}\mathbf{m}^\top\left(K + u^2I\right)^{-1}\mathbf{m}
+                       -\frac{1}{2}\log\left|K + u^2I\right|
+                       -\frac{n}{2}\log 2\pi
+\end{equation}
+Here, $u$ is the modeling uncertainty as defined in \S\ref{setup}, $I$ is the
+identity matrix, and $n$ is the number of training points (the sum of the lengths 
+of all of the time series).
+
+Finally, suppose we want to evaluate the Gaussian process regression at a 
+series of time points $\mathbf{t_*}$. Let $*$ indicate that the data comes from 
+the model, rather than the simulator time series that are used for training. 
+The covariance vector between this time grid and the training data is denoted
+as $\mathbf{k}_* = \mathbf{k}(\mathbf{t_*})$. The model of the metric function is 
+thus seen to be:
+\begin{equation}
+\label{metric-model}
+\mathbf{m}_*(\mathbf{t}_*) = \mathbf{k}_*^\top \left(K + u^2I\right)^{-1}\mathbf{m}
+\end{equation}
+
+
 
