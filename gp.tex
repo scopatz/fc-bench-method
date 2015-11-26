@@ -1,2 +1,28 @@
 \section{Gaussian Process Modeling}
 \label{gp}
+The study of Gaussian processes is rich and deep and more completely covered by 
+other reseources, such as \cite{rasmussen2006gaussian}. Here only the barest of 
+introductions to this topic are given as motivated by the regression problem at
+hand. For nuclear fuel cycle benchmark analysis, Gaussian processes will be used
+to form a model of the metric time series over all $S$ simulators. 
+
+A Gaussian process is defined by a mean and covariance function. 
+The mean function $\mu(t)$ is taken to be the expectation value $\E$ of mean
+the input fuctions, which here are the time series for all simulators. The
+covariance function $k(t, t^\prime)$ is the expected value of the inputs to the 
+mean. Symbolically, 
+\begin{equation}
+\label{mean-func}
+\mu(t) = \E\left[m_i^s(t)\right] = \E\left[m_i^0(t), m_i^1(t), \ldots\right]
+\end{equation}
+\begin{equation}
+\label{covar-func}
+k(t, t^\prime) = \E\left[(m_i^s(t) - \mu(t))(m_i^s(t^\prime) - \mu(t^\prime))\right]
+\end{equation}
+The Gaussian process $\GP$ thus approximates the metric for all simulators. This
+is denoted either using functional or operator notation as follows:
+\begin{equation}
+\label{gp-def-approx}
+m_i(t) \approx \GP(\mu(t), k(t, t^\prime)) \equiv \GP m_i^s
+\end{equation}
+
