@@ -126,4 +126,14 @@ training set for the model.}
 \label{gwe-model-total}
 \end{figure}
 
+Furthermore, Figure \ref{gwe-model-total} displays the model of the total generated
+power and not the total of the constiuent models. Symbolically, 
+\begin{equation}
+\label{total-model}
+m_* \approx \GP \left[\sum_i^I m_s^i\right] \ne \sum_i^I \GP m_s^i
+\end{equation}
+This is because the uncertainties are applied differently and the hyperparameter
+optimization would not be consistent between these two. It is thus considered safer
+to sum over the features for each simulator before applying the Gaussian process
+regression.
 
