@@ -76,4 +76,54 @@ scikit-learn v0.17 \cite{scikit-learn} and George v0.2.1 \cite{hodlr} implement
 Gaussian process regression. For the remainder of this paper, George is used
 for its superior performance characteristics and easier-to-use interface.
 
+For purposes of nuclear fuel cycle benchmarking, Gaussian processes can be used to
+create models of each component feature (e.g. LWRs and FRs here) from the 
+results of all simulators together. Other regression techniques could also be used 
+to create similar models.  However, Gaussian processes have the advantage of 
+incorporating modeling uncertainty, as seen above. The optimization of the 
+hyperparameters yields the most accurate results for the model. Furthermore, the 
+choice of kernel function can be tailored the functional form of the metric, if 
+necessary. The exponential squared function was chosen because it is generic. If the 
+metric is periodic, for instance, a cosine kernel may yield a more precise model. 
+So while other regression techniques could be used, the Gaussian processes 
+encapsulate the correct behavior necessary for a non-judgemental benchmark while 
+also remaining flexible to the particularities of the metric under examination.
+
+Using the sample data from \S\ref{setup}, three models can be constructed:
+generated power from LWRs $m_*^{\LWR}(t)$, generated power from FRs $m_*^{\FR}(t)$, 
+and total generated power $m_*(t)$. Assuming only floating point precision is as 
+the metric uncertainty, these Gaussian process models can be seen in Figures 
+\ref{gwe-model-lwr} - \ref{gwe-model-total} along with the original time series 
+from the simulators.
+It is important to note that even though the sample data is only for two simulors, 
+this method can handle any number of simultors, each with their own time grid, 
+without modifcation.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.9\textwidth]{gwe-model-lwr.eps}
+\caption{The Gaussian process model of the generated power from LWRs [GWe] 
+as a function of time as well as the results from the simultor that served as a 
+training set for the model.}
+\label{gwe-model-lwr}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.9\textwidth]{gwe-model-fr.eps}
+\caption{The Gaussian process model of the generated power from FRs [GWe] 
+as a function of time as well as the results from the simultor that served as a 
+training set for the model.}
+\label{gwe-model-fr}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.9\textwidth]{gwe-model-total.eps}
+\caption{The Gaussian process model of the total generated power [GWe] 
+as a function of time as well as the results from the simultor that served as a 
+training set for the model.}
+\label{gwe-model-total}
+\end{figure}
+
 
