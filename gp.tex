@@ -103,7 +103,7 @@ without modifcation.
 \centering
 \includegraphics[width=0.9\textwidth]{gwe-model-lwr.eps}
 \caption{The Gaussian process model of the generated power from LWRs [GWe] 
-as a function of time as well as the results from the simultor that served as a 
+as a function of time as well as the results from the simulator that served as a 
 training set for the model.}
 \label{gwe-model-lwr}
 \end{figure}
@@ -112,7 +112,7 @@ training set for the model.}
 \centering
 \includegraphics[width=0.9\textwidth]{gwe-model-fr.eps}
 \caption{The Gaussian process model of the generated power from FRs [GWe] 
-as a function of time as well as the results from the simultor that served as a 
+as a function of time as well as the results from the simulator that served as a 
 training set for the model.}
 \label{gwe-model-fr}
 \end{figure}
@@ -121,10 +121,12 @@ training set for the model.}
 \centering
 \includegraphics[width=0.9\textwidth]{gwe-model-total.eps}
 \caption{The Gaussian process model of the total generated power [GWe] 
-as a function of time as well as the results from the simultor that served as a 
+as a function of time as well as the results from the simulator that served as a 
 training set for the model.}
 \label{gwe-model-total}
 \end{figure}
+
+\clearpage
 
 Furthermore, Figure \ref{gwe-model-total} displays the model of the total generated
 power and not the total of the constiuent models. Symbolically, 
@@ -136,4 +138,36 @@ This is because the uncertainties are applied differently and the hyperparameter
 optimization would not be consistent between these two. It is thus considered safer
 to sum over the features for each simulator before applying the Gaussian process
 regression.
+
+Thusfar, the metric data has had effectively zero uncertainty.  But one of the 
+desirable features of the Gaussian proccess regression is that it accounts for 
+meaningful uncertainties. Suppose that the time series data was much sparser and that 
+the uncertainty associated with each value started off at zero and then grew at 
+a rate of 1\% per decade. A model of the total generated power with this uncertainty 
+is shown in Figure \ref{gwe-model-total-with-uncertainty}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.9\textwidth]{gwe-model-total-with-uncertainty.eps}
+\caption{The Gaussian process model of the total generated power [GWe] 
+as a function of time. The training set data is relatively sparse and its uncertainty
+has a 1\% per decade growth rate. The model curve is evaluated at every year. The 
+gray envelope represents two standard deviations from the model, as computed by 
+the Gaussian process.}
+\label{gwe-model-total-with-uncertainty}
+\end{figure}
+
+In Figure \ref{gwe-model-total-with-uncertainty}, note that as the model moves 
+farther in time from the training data the standard deviation grows. Furthermore, 
+as the uncertainty in the training data grows, the model itself degrades. Artifacts
+from the choice of kernel begin to be visible in model whenever the uncertainties are 
+relatively high. Both of these match intuition about how uncertain systems should
+work.
+
+Even though these uncertainty features are highly desirable, most nuclear fuel
+cycle simulators do not report uncertainties along with the metrics they compute.
+For this reason, the remainder of the examples in the paper will use the 
+zero-uncertainty models as presented in Figures \ref{gwe-model-lwr} - 
+\ref{gwe-model-total}.
+
 
