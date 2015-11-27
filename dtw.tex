@@ -137,6 +137,7 @@ simultors (DYMOND and Cyclus) and metric features (generated power for
 LWRs, FRs, and total). The simultors are presented in the rows and the
 features are given as columns. Distances may only be compared along 
 each column.}
+\label{d-compare}
 \begin{tabular}{l|c|c|c|}
                 & \textbf{LWR} & \textbf{FR} & \textbf{Total} \\
 \hline
@@ -147,5 +148,19 @@ each column.}
 \end{tabular}
 \end{table}
 
-Table 
+Table \ref{d-compare} gives the distances for all simulator and feature 
+combinations in the sample data. Only the differences between DYMOND and 
+Cyclus for the same feature may be compared.  However, this does 
+indicate that the DYMOND is closer to the model since both the FR and Total
+generated power distances are closer for DYMOND than for Cyclus.  As many
+simulators as desired could be added to the benchmark and distances could 
+be tallied for them as well. At a sufficient number of simulators, usual 
+statictics (mean, standard deviation) along each column may be computed.
+Simulators whose metrics fall outside of a typical threshold of the mean
+(one or two standard deviations) would then be considered outliers and 
+subject to further inter-code comparison. The two simulators here are 
+for deomnstation purposes and neither can be said to be an outlier in a
+non-judgemental way. Recall, though, that outliers determined in this way 
+may stem from the more correct simulator. The term outlier is not a 
+condemnation on its own.
 
