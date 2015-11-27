@@ -115,6 +115,37 @@ Additionally, the warp path between these two is shown as the white curve
 on top of $C$. Note that while $w$ is monotonic along both time axes, the
 path it takes minimizes the cost matrix at every step. Higher cost regions
 have the effect of pushing the warp path along one axis or another. The 
-distance between these two curves is computed to be 1.053 GWe.
+distance between these two curves $d(m_*^\LWR, m_\CYCLUS^\LWR)$ is computed 
+to be 1.053 GWe.
 
+The process of dynamic time warping models to raw simulator data can be 
+repeated for all combinations of simulators and features. The 
+$d(m_*^i, m_s^i)$ that are computed may then directly serve as a FOM for
+outlier identification. Only distances with the same feature my be compared
+because they share the same model. For instance, it is valid to compare
+$d(m_*^\LWR, m_\DYMOND^\LWR)$ and $d(m_*^\LWR, m_\CYCLUS^\LWR)$. However,  
+it is not valid to compare $d(m_*^\LWR, m_\DYMOND^\LWR)$ and 
+$d(m_*^\FR, m_\DYMOND^\FR)$.  In the situation, where the simulator data
+has different time grids, the model can be evaluated with each time grid
+prior to computing the coorespnding DTW distances and the comparison will
+remain valid.
+
+\begin{table}[htb]
+\centering
+\caption{Distances [GWe] between models and simulators for all combinations of 
+simultors (DYMOND and Cyclus) and metric features (generated power for 
+LWRs, FRs, and total). The simultors are presented in the rows and the
+features are given as columns. Distances may only be compared along 
+each column.}
+\begin{tabular}{l|c|c|c|}
+                & \textbf{LWR} & \textbf{FR} & \textbf{Total} \\
+\hline
+\textbf{DYMOND} & 1.452        & 2.783       & 3.022          \\
+\hline
+\textbf{Cyclus} & 1.053        & 3.732       & 3.984          \\
+\hline
+\end{tabular}
+\end{table}
+
+Table 
 
