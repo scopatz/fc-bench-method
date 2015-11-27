@@ -96,6 +96,25 @@ value because the Gaussian process model can be used to predict a time series
 with whatever time grid is desired.  The advantage of using a regression model 
 is that it allows the analyst to force the same time grid.  The advantage of 
 dynamic time warping is that ensuring the same time grid is not necessary.
-Coupling Gaussian processes and DTW together allow is more robust analysis tool 
+Coupling Gaussian processes and DTW together is a more robust analysis tool 
 than the methods individually.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.9\textwidth]{cost-lwr-model-to-lwr-cyclus.eps}
+\caption{Heatmap of the cost matrix between the Gaussian process model 
+for LWRs, $m_*^\LWR(t)$, and the Cyclus LWR time series, $m_\CYCLUS^\LWR(t)$.
+The warp path is superimposed as the white curve on top of the cost matrix.}
+\label{cost-lwr-model-to-lwr-cyclus}
+\end{figure}
+
+Figure \ref{cost-lwr-model-to-lwr-cyclus} displays and example cost matrix 
+as a heat map for the DTW between the LWR Gaussian process model 
+$m_*^\LWR(t)$ and the original Cyclus LWR time series $m_\CYCLUS^\LWR(t)$.
+Additionally, the warp path between these two is shown as the white curve
+on top of $C$. Note that while $w$ is monotonic along both time axes, the
+path it takes minimizes the cost matrix at every step. Higher cost regions
+have the effect of pushing the warp path along one axis or another. The 
+distance between these two curves is computed to be 1.053 GWe.
+
 
