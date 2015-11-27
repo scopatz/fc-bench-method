@@ -62,8 +62,11 @@ C_{a+1,1} & = \Delta L_{a,1} + C_{a,1}\\
 C_{a+1,b+1} & = \Delta L_{a,b} + \min\left[C_{a,b}, C_{a+1,b}, C_{a,b+1}\right]
 \end{split}
 \end{equation}
-The boundary conditions in Equation \ref{cost-matrix} are equivalent to applying 
-an infinite cost to any $a$ or $b$ less than or equal to zero.
+The boundary conditions in Equation \ref{cost-matrix} are equivalent 
+to applying an infinite cost to any $a$ or $b$ less than or equal to zero.
+The units of the cost matrix are the same as the metric. However, the 
+scale of the cost matrix is geometrically larger than the metric itself,
+due to its compounding recursive definition.
 
 Given $C$, the warp path is thus a sequnece of coordinate points that can then be 
 computed by walking backwards through the matrix from $(A, B)$ to $(1, 1)$.
