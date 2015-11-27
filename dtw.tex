@@ -1,2 +1,43 @@
 \section{Dynamic Time Warping}
 \label{dtw}
+
+Now that there are representative models of all features, the issue revolves 
+around how to compare these time series models. Dynamic time warping \cite{muller}
+is a method for computing the distance between any two time series. The time 
+series need not be of the same length.  Furthermore, the time series may be 
+decomposed into a set of representative spectra and the DTW may still be applied.
+The distance computed by DTW is a measure of the changes that would need to be 
+made to one time series to turn it into (warp) the other time series. Thus, 
+the DTW distance is a measure over the whole time series, and not just a 
+single characteristic point.
+
+With respect to nuclear feul cycle benchmarks, there are two main DTW applictions.
+The first is to compute the distance between a Gaussian process model and each of 
+the simulators that made up the training set.  This gives a quantitative measure 
+of how far each simulator is from the model and can help determine which 
+simultors are outliers. To maintain a non-judgemental benchmark, though, it is 
+critical to not then use this information to discard outliers.  Rather, outlier
+identification should be used as part of an inter-code comparison. If one simulator
+is an outlier for a given metric, the reasons for this should be investigated. 
+For example, the outlier simulator may be at higher fidelity level, there may be 
+a bug in the outlier, or there may be a bug in all other simulators. Identifying 
+outliers for many metrics could help discover the underlying cause of any 
+discrepencies.
+
+The second application of DTWs to benchmarking is to compare the consituient 
+feature models to the total model.  Thes distances computed in this way allow 
+for a rank ordering of the componets.  This enables the benchmark to make claims
+about which features drive the fuel cycle metric most strongly, over the whole 
+simulation time for all simulators. Traditionally, the simulators have to agree
+within nominal error bounds ($<5\%$) for a benchmark to make such a claim.  Here,
+the simulators need not necessarily agree since the Gaussian process models are
+used as representatives.  In this application, it is useful to recast the DTW 
+distance as a measure of contribution.  This new FOM will be presented in 
+\S\ref{contribution}.
+
+For any two time series, dynamic time warping consists of three part:
+the distance $d$, a cost matrix $C$, and a warp path $w$. The cost matix 
+specifies how far a point on the first time series is from another point on the 
+other time series.  The warp path is then the minimal cost curve through this 
+matrix from the fist point in time to the last. The distance, therefore, is the
+total cost of traversing the warp path.
