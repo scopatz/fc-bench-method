@@ -1,3 +1,4 @@
+\clearpage
 \section{Dynamic Time Warping}
 \label{dtw}
 
@@ -41,3 +42,57 @@ specifies how far a point on the first time series is from another point on the
 other time series.  The warp path is then the minimal cost curve through this 
 matrix from the fist point in time to the last. The distance, therefore, is the
 total cost of traversing the warp path.
+
+The first step in DTW is to compute the cost matrix. Suppose that the first 
+time series $x$ has length $A$ indexed by $a$ and the second time series $y$ has 
+length $B$ indexed by $b$. It is helpful to define an $A\times B$ matrix $\Delta L$
+that is the $L_1$ norm of the difference of time series $x$ and $y$:
+\begin{equation}
+\label{delta-l1}
+\Delta L_{a,b} = \left|x_a - y_b\right|_1
+\end{equation}
+The cost matrix $C$ is then an $A\times B$ sized matrix that is defined by the 
+following recurssion relations:
+\begin{equation}
+\label{cost-matrix}
+\begin{split}
+C_{1,1} & = \Delta L_{1,1}\\
+C_{1,b+1} & = \Delta L_{1,b} + C_{1,b}\\
+C_{a+1,1} & = \Delta L_{a,1} + C_{a,1}\\
+C_{a+1,b+1} & = \Delta L_{a,b} + \min\left[C_{a,b}, C_{a+1,b}, C_{a,b+1}\right]
+\end{split}
+\end{equation}
+The boundary conditions in Equation \ref{cost-matrix} are equivalent to applying 
+an infinite cost to any $a$ or $b$ less than or equal to zero.
+
+Given $C$, the warp path is thus a sequnece of coordinate points that can then be 
+computed by walking backwards through the matrix from $(A, B)$ to $(1, 1)$.
+For a point $w_p$ in the warp path, the previous point $w_{p-1}$ is given by 
+where the cost is minimized among the locations one column to the left, one row
+down, and one diagonal element to left and down. Symbolically, 
+\begin{equation}
+\label{warp-path}
+w_{p-1} = \argmin\left[C_{a-1,b-1}, C_{a-1,b}, C_{a,b-1}\right]
+\end{equation}
+The maximum possible length of $w$ is thus $A + B$ and the mimimum length is 
+$\sqrt{A^2 + B^2}$. The warp path itself could potentially serve as a FOM.  
+However, doing so would not take into account the cost along this path.
+
+Therefore, the distance $d$ is defined as a FOM does include for the cost of the
+warp.  Due to the relations used to define the cost matrix, $d$ can be stated
+succinctly as:
+\begin{equation}
+\label{d-calc}
+d = \frac{C_{A,B}}{A + B}
+\end{equation}
+That is, $d$ is the final value of the cost matrix divided by the maximal length 
+of the warp path.
+
+For all practical purposes in benchmarking, $A$ and $B$ can be forced to have the 
+value because the Gaussian process model can be used to predict a time series 
+with whatever time grid is desired.  The advantage of using a regression model 
+is that it allows the analyst to force the same time grid.  The advantage of 
+dynamic time warping is that ensuring the same time grid is not necessary.
+Coupling Gaussian processes and DTW together allow is more robust analysis tool 
+than the methods individually.
+
