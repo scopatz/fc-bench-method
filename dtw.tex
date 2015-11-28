@@ -12,22 +12,22 @@ made to one time series to turn it into (warp) the other time series. Thus,
 the DTW distance is a measure over the whole time series, and not just a 
 single characteristic point.
 
-With respect to nuclear feul cycle benchmarks, there are two main DTW applictions.
+With respect to nuclear fuel cycle benchmarks, there are two main DTW applications.
 The first is to compute the distance between a Gaussian process model and each of 
 the simulators that made up the training set.  This gives a quantitative measure 
 of how far each simulator is from the model and can help determine which 
-simultors are outliers. To maintain a non-judgemental benchmark, though, it is 
+simulators are outliers. To maintain a non-judgmental benchmark, though, it is 
 critical to not then use this information to discard outliers.  Rather, outlier
 identification should be used as part of an inter-code comparison. If one simulator
 is an outlier for a given metric, the reasons for this should be investigated. 
 For example, the outlier simulator may be at higher fidelity level, there may be 
 a bug in the outlier, or there may be a bug in all other simulators. Identifying 
 outliers for many metrics could help discover the underlying cause of any 
-discrepencies.
+discrepancies.
 
-The second application of DTWs to benchmarking is to compare the consituient 
-feature models to the total model.  Thes distances computed in this way allow 
-for a rank ordering of the componets.  This enables the benchmark to make claims
+The second application of DTWs to benchmarking is to compare the constituent 
+feature models to the total model.  These distances computed in this way allow 
+for a rank ordering of the components.  This enables the benchmark to make claims
 about which features drive the fuel cycle metric most strongly, over the whole 
 simulation time for all simulators. Traditionally, the simulators have to agree
 within nominal error bounds ($<5\%$) for a benchmark to make such a claim.  Here,
@@ -37,7 +37,7 @@ distance as a measure of contribution.  This new FOM will be presented in
 \S\ref{contribution}.
 
 For any two time series, dynamic time warping consists of three part:
-the distance $d$, a cost matrix $C$, and a warp path $w$. The cost matix 
+the distance $d$, a cost matrix $C$, and a warp path $w$. The cost matrix 
 specifies how far a point on the first time series is from another point on the 
 other time series.  The warp path is then the minimal cost curve through this 
 matrix from the fist point in time to the last. The distance, therefore, is the
@@ -52,7 +52,7 @@ that is the $L_1$ norm of the difference of time series $x$ and $y$:
 \Delta L_{a,b} = \left|x_a - y_b\right|_1
 \end{equation}
 The cost matrix $C$ is then an $A\times B$ sized matrix that is defined by the 
-following recurssion relations:
+following recursion relations:
 \begin{equation}
 \label{cost-matrix}
 \begin{split}
@@ -68,7 +68,7 @@ The units of the cost matrix are the same as the metric. However, the
 scale of the cost matrix is geometrically larger than the metric itself,
 due to its compounding recursive definition.
 
-Given $C$, the warp path is thus a sequnece of coordinate points that can then be 
+Given $C$, the warp path is thus a sequence of coordinate points that can then be 
 computed by walking backwards through the matrix from $(A, B)$ to $(1, 1)$.
 For a point $w_p$ in the warp path, the previous point $w_{p-1}$ is given by 
 where the cost is minimized among the locations one column to the left, one row
@@ -77,7 +77,7 @@ down, and one diagonal element to left and down. Symbolically,
 \label{warp-path}
 w_{p-1} = \argmin\left[C_{a-1,b-1}, C_{a-1,b}, C_{a,b-1}\right]
 \end{equation}
-The maximum possible length of $w$ is thus $A + B$ and the mimimum length is 
+The maximum possible length of $w$ is thus $A + B$ and the minimum length is 
 $\sqrt{A^2 + B^2}$. The warp path itself could potentially serve as a FOM.  
 However, doing so would not take into account the cost along this path.
 
@@ -102,7 +102,7 @@ than the methods individually.
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.9\textwidth]{cost-lwr-model-to-lwr-cyclus.eps}
-\caption{Heatmap of the cost matrix between the Gaussian process model 
+\caption{Heat map of the cost matrix between the Gaussian process model 
 for LWRs, $m_*^\LWR(t)$, and the Cyclus LWR time series, $m_\CYCLUS^\LWR(t)$.
 The warp path is superimposed as the white curve on top of the cost matrix.}
 \label{cost-lwr-model-to-lwr-cyclus}
@@ -127,14 +127,14 @@ $d(m_*^\LWR, m_\DYMOND^\LWR)$ and $d(m_*^\LWR, m_\CYCLUS^\LWR)$. However,
 it is not valid to compare $d(m_*^\LWR, m_\DYMOND^\LWR)$ and 
 $d(m_*^\FR, m_\DYMOND^\FR)$.  In the situation, where the simulator data
 has different time grids, the model can be evaluated with each time grid
-prior to computing the coorespnding DTW distances and the comparison will
+prior to computing the corresponding DTW distances and the comparison will
 remain valid.
 
 \begin{table}[htb]
 \centering
 \caption{Distances [GWe] between models and simulators for all combinations of 
-simultors (DYMOND and Cyclus) and metric features (generated power for 
-LWRs, FRs, and total). The simultors are presented in the rows and the
+simulators (DYMOND and Cyclus) and metric features (generated power for 
+LWRs, FRs, and total). The simulators are presented in the rows and the
 features are given as columns. Distances may only be compared along 
 each column.}
 \label{d-compare}
@@ -155,12 +155,12 @@ indicate that the DYMOND is closer to the model since both the FR and Total
 generated power distances are closer for DYMOND than for Cyclus.  As many
 simulators as desired could be added to the benchmark and distances could 
 be tallied for them as well. At a sufficient number of simulators, usual 
-statictics (mean, standard deviation) along each column may be computed.
+statistics (mean, standard deviation) along each column may be computed.
 Simulators whose metrics fall outside of a typical threshold of the mean
 (one or two standard deviations) would then be considered outliers and 
 subject to further inter-code comparison. The two simulators here are 
-for deomnstation purposes and neither can be said to be an outlier in a
-non-judgemental way. Recall, though, that outliers determined in this way 
+for demonstration purposes and neither can be said to be an outlier in a
+non-judgmental way. Recall, though, that outliers determined in this way 
 may stem from the more correct simulator. The term outlier is not a 
 condemnation on its own.
 
@@ -182,17 +182,17 @@ Smaller distances are closer to the total and thus more important.
 In the sample data here, the total generated power model can be compared to 
 the models for LWR and FR generated power. The value of 
 $d(m_*^\Total, m_*^\LWR) = 97.010$ while $d(m_*^\Total, m_*^\FR) = 19.503$.
-As expected, the FRs are a more imporant driver of the transition system 
+As expected, the FRs are a more important driver of the transition system 
 than the LWRs over the time domain of examined. Figures 
 \ref{cost-total-model-to-lwr-model} \& \ref{cost-total-model-to-fr-model}
 show the cost matrix and warp path for these two cases.  Notice that in the
 FR case, the warp path is effectively flat until the FRs are deployed in 
-signifigant numbers. 
+significant numbers. 
  
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.9\textwidth]{cost-total-model-to-lwr-model.eps}
-\caption{Heatmap of the cost matrix between the Gaussian process model 
+\caption{Heat map of the cost matrix between the Gaussian process model 
 for total generated power, $m_*^\Total(t)$, and the LWR model, 
 $m_*^\LWR(t)$.
 The warp path is superimposed as the white curve on top of the cost matrix.}
@@ -202,18 +202,18 @@ The warp path is superimposed as the white curve on top of the cost matrix.}
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.9\textwidth]{cost-total-model-to-fr-model.eps}
-\caption{Heatmap of the cost matrix between the Gaussian process model 
+\caption{Heat map of the cost matrix between the Gaussian process model 
 for total generated power, $m_*^\Total(t)$, and the FR model, 
 $m_*^\FR(t)$.
 The warp path is superimposed as the white curve on top of the cost matrix.}
 \label{cost-total-model-to-fr-model}
 \end{figure}
 
-Thus DTW yeilds a meaningful mechanism for benchmarks to compare various
+Thus DTW yields a meaningful mechanism for benchmarks to compare various
 sources of data and models that applies to any time series.  As a tool for
 outlier identification, it allows for each simulator to use its own native 
 time grid. As a tool for performing rank ordering of features, the distances
-are perfrectly functional. However, lower distances implying higher 
+are perfectly functional. However, lower distances implying higher 
 importance may be the opposite of intuition. The potential for confusion here
 makes it less than ideal as a FOM on its own. A remedy for this is presented
 in the next section.
