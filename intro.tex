@@ -21,28 +21,31 @@ deployed is not sufficient for statistical accuracy. Even the canonical
 Once Through fuel cycle scenario has only been deployed a handful of times.
 For other advanced fuel cycles, industrial scale data is even more stark. 
 Since fuel cycle simulation is thus effectively impossible to validate, 
-we should look to methods non-judgmental methods of benchmarking. The 
+non-judgmental methods of benchmarking must be considered. The 
 results of any given simulator should be evaluated in reference to how 
 it performs against other simulators in such a way that acknowledges that 
 any and all simulators may demonstrate incorrect behavior. No simulator
-by fiat produces the `true' or reference case.
+by fiat produces the `true' or reference answer.
 
 The other major conceptual issue with fuel cycle benchmarking is that there 
-is no agreed upon mechanism for establishing a figure-of-merit (FOM) for 
-a metric that is uniform across all metrics of interest. For example, 
+is no agreed upon mechanism for establishing a figure-of-merit for 
+that is uniform across all fuel cycle metrics of interest. For example, 
 repository heat load may be examined only at the end of the of the simulation,
 separated plutonium may be used wherever it peaks, and natural uranium 
-mined might be of concern only in 100 years. Comparing at a specific point 
+mined might be of concern only after 100 years from the start of the 
+simulation. Comparing at a specific point 
 in time fails to take into account the behavior of that metric over time and 
-can skew any decisions made based solely on that metric. Additionally, the 
+can skew decision making. Additionally, the 
 time of comparison varies based on the metric itself. This is a necessary 
 side effect of picking a single point in time.
 Furthermore, such FOMs are not useful for indicating why simulations differ, 
-only that they do. Moreover, if such FOM match, this does not indicate
-that the simulator actually agree. Their behavior could be radically 
-different at every other point in time.  It should be noted that 
-Equilibrium and quasi-static fuel cycle simulators are sometimes able to 
-ignore these issues, because all time points are treated equally.
+only that they do. Moreover, if such FOMs match, this does not indicate
+that the simulators actually agree. Their behavior 
+could be radically different at every other simulation time and converge
+only where the metric is evaluated.  The one caveat 
+here is that 
+equilibrium and quasi-static fuel cycle simulators are sometimes able to 
+ignore these issues because all points in time are treated equally.
 
 Some dynamic FOMs do exist. However, these typically require that the metric
 data be too well-behaved for comparison purposes. Consider the case of total
