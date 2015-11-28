@@ -1,14 +1,14 @@
 \section{Gaussian Process Modeling}
 \label{gp}
 The study of Gaussian processes is rich and deep and more completely covered by 
-other reseources, such as \cite{rasmussen2006gaussian}. Here only the barest of 
+other resources, such as \cite{rasmussen2006gaussian}. Here only the barest of 
 introductions to this topic are given as motivated by the regression problem at
 hand. For nuclear fuel cycle benchmark analysis, Gaussian processes will be used
 to form a model of the metric time series over all $S$ simulators. 
 
 A Gaussian process is defined by a mean and covariance function. 
 The mean function $\mu(t)$ is taken to be the expectation value $\E$ of mean
-the input fuctions, which here are the time series for all simulators. The
+the input functions, which here are the time series for all simulators. The
 covariance function $k(t, t^\prime)$ is the expected value of the inputs to the 
 mean. Symbolically, 
 \begin{equation}
@@ -42,7 +42,7 @@ hyperparameters.
 
 Now, define a matrix $K$ such that the element at the $t$-th row and $t^\prime$-th
 column is given by Equation \ref{exp2-kernel}. If a vector of training metric 
-values $\mathbf{m}$ is defined by contactenating metrics $m_s^i(t)$ for all simulator
+values $\mathbf{m}$ is defined by concatenating metrics $m_s^i(t)$ for all simulator
 for all times $T$, then log likelihood of the obtaining $\mathbf{m}$ 
 is seen to be:
 \begin{equation}
@@ -70,7 +70,7 @@ A full derivation of Equations \ref{mean-func}-\ref{metric-model} can be found i
 how to compute the hyperparameters, efficiently invert the covariance matrix, 
 and compute the model values. 
 
-In practice, however, a number of free and open source implmenetations of Gaussian 
+In practice, however, a number of free and open source implementations of Gaussian 
 process regression are readily available. In the Scientific Python ecosystem, both 
 scikit-learn v0.17 \cite{scikit-learn} and George v0.2.1 \cite{hodlr} implement 
 Gaussian process regression. For the remainder of this paper, George is used
@@ -86,7 +86,7 @@ choice of kernel function can be tailored the functional form of the metric, if
 necessary. The exponential squared function was chosen because it is generic. If the 
 metric is periodic, for instance, a cosine kernel may yield a more precise model. 
 So while other regression techniques could be used, the Gaussian processes 
-encapsulate the correct behavior necessary for a non-judgemental benchmark while 
+encapsulate the correct behavior necessary for a non-judgmental benchmark while 
 also remaining flexible to the particularities of the metric under examination.
 
 Using the sample data from \S\ref{setup}, three models can be constructed:
@@ -95,9 +95,9 @@ and total generated power $m_*(t)$. Assuming only floating point precision is as
 the metric uncertainty, these Gaussian process models can be seen in Figures 
 \ref{gwe-model-lwr} - \ref{gwe-model-total} along with the original time series 
 from the simulators.
-It is important to note that even though the sample data is only for two simulors, 
-this method can handle any number of simultors, each with their own time grid, 
-without modifcation.
+It is important to note that even though the sample data is only for two simulators, 
+this method can handle any number of simulators, each with their own time grid, 
+without modification.
 
 \begin{figure}[htb]
 \centering
@@ -129,7 +129,7 @@ training set for the model.}
 \clearpage
 
 Furthermore, Figure \ref{gwe-model-total} displays the model of the total generated
-power and not the total of the constiuent models. Symbolically, 
+power and not the total of the constituent models. Symbolically, 
 \begin{equation}
 \label{total-model}
 m_* \approx \GP \left[\sum_i^I m_s^i\right] \ne \sum_i^I \GP m_s^i
@@ -139,8 +139,8 @@ optimization would not be consistent between these two. It is thus considered sa
 to sum over the features for each simulator before applying the Gaussian process
 regression.
 
-Thusfar, the metric data has had effectively zero uncertainty.  But one of the 
-desirable features of the Gaussian proccess regression is that it accounts for 
+Thus far, the metric data has had effectively zero uncertainty.  But one of the 
+desirable features of the Gaussian process regression is that it accounts for 
 meaningful uncertainties. Suppose that the time series data was much sparser and that 
 the uncertainty associated with each value started off at zero and then grew at 
 a rate of 1\% per decade. A model of the total generated power with this uncertainty 
