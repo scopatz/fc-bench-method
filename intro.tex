@@ -108,9 +108,9 @@ in a Gaussian process are known to be more accurate (closer means) than
 assuming uncorrelated uncertainties.  The trade off is that the 
 model is less precise (higher standard deviations) than the uncorrelated 
 case \cite{hodlr}. Such a trade off is likely desirable because no simulator 
-is necessarily more correct than any other simulator. These features are all 
-necessary for inter-code comparisons where an outlier simulator may be the 
-most correct (perhaps it is higher fidelity than the others). Thus it
+is necessarily more correct than any other simulator. For example, 
+in an inter-code comparison, an outlier simulator may be the 
+most correct, perhaps because it is higher fidelity than the others. Thus it
 becomes important to quantify outliers rather than discard them.
 
 However, a Gaussian process model of a metric for a set of simulators 
@@ -120,7 +120,8 @@ technique is proposed as a method for deriving FOMs from the models.
 
 Dynamic time warping computes the minimal distance and path that it would 
 take to convert one time series curve into another. This procedure is highly 
-leveraged in audio processing systems, and especially in speech recognition.
+leveraged in audio processing systems, and especially in speech recognition
+\cite{myers1980performance,muda2010voice}.
 This is because the two time series that are being compared need not have
 the same time basis.  It does not matter if one time series is longer than 
 the other or if they have different sampling frequencies. The DTW distance
