@@ -48,37 +48,40 @@ equilibrium and quasi-static fuel cycle simulators are sometimes able to
 ignore these issues because all points in time are treated equally.
 
 Some dynamic FOMs do exist. However, these typically require that the metric
-data be too well-behaved for comparison purposes. Consider the case of total
-power produced [GWe]. A FOM could be the sum over time of the relative error 
+data be too well-behaved for generic comparison purposes. Consider the case 
+of total power produced [GWe]. A FOM could be the sum over time of the relative error 
 between the total power of a single simulator and the root-mean squared total power
 of all the simulators together. However, such an FOM fails if the total power
 time series have different lengths. Such differences could arise because 
 of different time steps (1 month versus 1 year) or because of different 
-simulation durations. Suppose that a comparison is posed as "until transition"
-in a transition scenario, it could defeat the purpose of the benchmark to
-force different simulators to have the same time-to-transition if they 
-nominally would have had distinct. 
+simulation durations. Furthermore, suppose that a benchmark is posed as 
+"until transition" in a transition scenario. It would defeat the purpose of 
+the benchmark to force different simulators to have the same 
+time-to-transition if they nominally would calculate distinct transition 
+times. A robust FOM should not impose the constraint of a uniform time grid.
  
 The mechanisms used for benchmarking that have been discussed so far typically
 do not incorporate modeling uncertainty coming from the simulator itself.
-This is likely because most simulators do not compute uncertainty on their 
-own. Instead they rely on perturbation studies or stochastic wrappers around 
+This is likely because most simulators do not compute uncertainty directly. 
+Instead they rely on perturbation studies or stochastic wrappers around 
 the simulator. Furthermore, metrics may add their own uncertainty from the 
-data that the bring in (half-lives, cross-sections, etc.) and the 
-operations they perform. However, even if such error bars were available for
-every point in a time series metric, the benchmark FOM calculation would 
-ignore them.
+data that the bring in (half-lives, cross-sections, etc.). 
+However, even if such error bars were available for
+every point in a time series metric, the traditional benchmark FOM 
+calculations would ignore them.
 
-The method described in this paper addresses all of the above issues that 
-that a dynamic fuel cycle benchmark will be able to use on the 
-metrics of interest. It is important to note, though, that most fuel cycle 
+The method described in this paper addresses all of the above issues. It 
+creates FOMs that a dynamic fuel cycle benchmark will be able to use on any 
+metrics of interest. Before going further, it is important to note that 
+most fuel cycle 
 metrics are time series and can be derived from the mass balances. 
-Furthermore, most metrics have an associated total metric that can be 
+Additionally, many metrics have an associated total metric that can be 
 computed from the linear combination of all of its constituent features. 
 For example, total mass flows are the sum of the mass flow of each nuclide
-and total power generated is the sum of the power from each reactor type 
-(such as LWRs and FRs).  These attributes are common to the overwhelming 
-majority of fuel cycle metrics.
+and total power generated is the sum of the power from each reactor type, 
+such as light water reactors (LWR) and fast reactors (FR). These attributes 
+are common to the overwhelming majority of fuel cycle metrics and so FOMs
+may take advanatage of these structures.
 
 Gaussian process models are proposed here as a method to incorporate 
 metric uncertainties and make the analysis non-judgmental to any particular 
