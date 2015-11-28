@@ -3,9 +3,9 @@
 \label{contribution}
 
 In \S\ref{dtw}, the dynamic time warping distance was presented as a 
-FOM for measuring the simularity between time series, whether they 
+FOM for measuring the similarity between time series, whether they 
 were model-to-simulator comparisons or model-to-model comparisons.
-The disances alone, though, have the inverse meaning when trying to 
+The distances alone, though, have the inverse meaning when trying to 
 compute a FOM for contribution to a fuel cycle.  For example, the 
 question may be posed as, ``Are LWRs or FRs more important to the fuel 
 cycle as a whole?'' While distances can answer this question, smaller 
@@ -40,7 +40,7 @@ $D$ is seen to normalize the model-to-model distance while subtracting this
 ratio from unity makes higher contribution values more important.  
 Using the sample data, $c^\LWR = 0.298$ and $c^\FR = 0.859$. This again shows
 that the FRs are more important to the total power of the whole cycle.
-Here though, higher contributions yeild higher importance and the values
+Here though, higher contributions yield higher importance and the values
 are always between zero and one.
 
 Note that even though $c$ is a fraction, it is not normalized across 
@@ -53,14 +53,14 @@ is on the following range, which is not $[0, 1]$:
 It is easy to imagine an alternative FOM that divides $c^i$ by $I$. However, 
 this was not done here because the choice of $I$ (the number of partitions)
 can be made arbitrarily large.  In the sample calculations $I=2$ for LWRs and
-FRs.  However, $I$ could have been set to 3 by inluding small modular reactor
+FRs.  However, $I$ could have been set to 3 by including small modular reactor
 (SMRs) which are never built and produce no power.  $I$ could then be 
-increased to 4 or higher by including more non-existant reactor types.
+increased to 4 or higher by including more non-existent reactor types.
 Dividing by $I$ is not stable enough for a FOM.
 
 Furthermore, dividing the contribution by $I$ is not sufficient to 
 normalize the sum of the $c^i$, in general.  This is because the 
-contribution is inherently a cummulative measure. If a component ever had a 
+contribution is inherently a cumulative measure. If a component ever had a 
 non-zero value, it will always be seen to have contributed something. 
 Furthermore, because of the constraint on the total, $\sum c^i$ can never
 reach $I$, unless there is only a single component to the total or the 
@@ -69,7 +69,7 @@ zero everywhere). Thus, dividing $c^i$ by $I$ with the aim of normalizing the
 sum of the $c^i$ is incorrect for any situation of interest in a fuel 
 cycle benchmark.
 
-Thus if a truly normailzed version of contribution is desired, it must 
+Thus if a truly normalized version of contribution is desired, it must 
 use the sum of the actual contributions. Define the normalized contribution 
 as $|c^i|$, 
 \begin{equation}
