@@ -5,18 +5,21 @@ on what metrics to compare, how to compare them, and at what point in the
 fuel cycle they should be compared 
 \cite{wilson2011comparing,guerin2009benchmark,piet2011assessment}. 
 The benchmarking mechanism described 
-here couples Gaussian process models (GP) to dynamic time warping (DTW).
-Together these address how to perform fundamental tasks for common nuclear
-fuel cycle benchmarking. 
+here couples Gaussian process models (GP) \cite{rasmussen2006gaussian} to 
+dynamic time warping (DTW) \cite{muller}. Together these address how to 
+generate figures-of-merit (FOM) for common nuclear fuel cycle benchmarking
+tasks. 
 
 Confusion in this area is partly because such activities 
-are not benchmarking in the strictest validation sense. Most fuel
-cycle benchmarks are more correctly called code-to-code comparisons or 
+are not in fact `benchmarking' in the strictest validation sense. Most fuel
+cycle benchmarks are more correctly called code-to-code comparisons, or 
 inter-code comparisons, as they compare simulator results. Importantly, 
-these take place in the absence of true experimental data. The number of 
-real-world, industrial scale nuclear fuel cycles that have historically been 
-deployed is not sufficient for statistical accuracy even for the Once-Through 
-scenario. For other fuel cycles, industrial data is even more stark. 
+there is an absence of true experimental data for a benchmark or simulator
+to validate against. Moreover, the number of 
+real world, industrial scale nuclear fuel cycles that have historically been 
+deployed is not sufficient for statistical accuracy. Even the canonical 
+Once Through fuel cycle scenario has only been deployed a handful of times.
+For other advanced fuel cycles, industrial scale data is even more stark. 
 Since fuel cycle simulation is thus effectively impossible to validate, 
 we should look to methods non-judgmental methods of benchmarking. The 
 results of any given simulator should be evaluated in reference to how 
