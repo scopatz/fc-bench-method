@@ -6,11 +6,11 @@ introductions to this topic are given as motivated by the regression problem at
 hand. For nuclear fuel cycle benchmark analysis, Gaussian processes will be used
 to form a model of the metric time series over all $S$ simulators. 
 
-A Gaussian process is defined by a mean and covariance function. 
-The mean function $\mu(t)$ is taken to be the expectation value $\E$ of mean
+A Gaussian process is defined by mean and covariance functions. 
+The mean function $\mu(t)$ is taken to be the expectation value $\E$ of 
 the input functions, which here are the time series for all simulators. The
-covariance function $k(t, t^\prime)$ is the expected value of the inputs to the 
-mean. Symbolically, 
+covariance function $k(t, t^\prime)$ is the expected value of the input 
+functions to the mean. Symbolically, 
 \begin{equation}
 \label{mean-func}
 \mu(t) = \E\left[m_s^i(t)\right] = \E\left[m_0^i(t), m_1^i(t), \ldots\right]
@@ -23,13 +23,16 @@ The Gaussian process $\GP$ thus approximates the metric given information from a
 simulators. This is denoted either using functional or operator notation as follows:
 \begin{equation}
 \label{gp-def-approx}
-m^i(t) \approx \GP\left(\mu(t), k(t, t^\prime)\right) \equiv \GP m_s^i
+m_*^i(t) \approx \GP\left(\mu(t), k(t, t^\prime)\right) \equiv \GP m_s^i
 \end{equation}
 
-For Gaussian process regression, a functional form for $k$ needs to be provided.
-This representative is sometimes called a kernel function and has free parameters 
-for the regression called \emph{hyperparameters}. How hyperparameters are defined is 
-tied to the kernel function itself. The values for the hyperparameters are determined
+For Gaussian process regression, a functional form for the covariance 
+$k(t, t^\prime)$ needs to be provided.
+This is sometimes called the kernel function and contains the free parameters 
+for the regression, also called hyperparameters. How the hyperparameters are 
+defined is 
+tied to the definition of the kernel function itself. The values for the 
+hyperparameters are determined
 via optimization of the maximal likelihood of the value of the metric function.
 While there are many possible kernels, a standard and generically applicable one 
 is the exponential squared kernel, as seen in Equation \ref{exp2-kernel}:
@@ -40,20 +43,21 @@ k(t, t^\prime) = \sigma^2 \exp\left[-\frac{1}{2\ell}(t - t^\prime)^2 \right]
 Here, the length scale $\ell$ and the signal variance $\sigma^2$ are the 
 hyperparameters.
 
-Now, define a matrix $K$ such that the element at the $t$-th row and $t^\prime$-th
+Now, define a matrix $\K$ such that the element at the $t$-th row and $t^\prime$-th
 column is given by Equation \ref{exp2-kernel}. If a vector of training metric 
-values $\mathbf{m}$ is defined by concatenating metrics $m_s^i(t)$ for all simulator
+values $\mathbf{m}$ is defined by concatenating metrics $m_s^i(t)$ for all 
+simulators
 for all times $T$, then log likelihood of the obtaining $\mathbf{m}$ 
 is seen to be:
 \begin{equation}
 \label{log-p}
-\log p(\mathbf{m}|T) = -\frac{1}{2}\mathbf{m}^\top\left(K + u^2I\right)^{-1}\mathbf{m}
-                       -\frac{1}{2}\log\left|K + u^2I\right|
+\log p(\mathbf{m}|T) = -\frac{1}{2}\mathbf{m}^\top\left(\K + u^2\I\right)^{-1}\mathbf{m}
+                       -\frac{1}{2}\log\left|\K + u^2\I\right|
                        -\frac{n}{2}\log 2\pi
 \end{equation}
-Here, $u$ is the modeling uncertainty as defined in \S\ref{setup}, $I$ is the
-identity matrix, and $n$ is the number of training points (the sum of the lengths 
-of all of the time series).
+Here, $u$ is the modeling uncertainty as denoted in the previous section, 
+$\I$ is the identity matrix, and $n$ is the number of training points (the 
+sum of the lengths of all of the time series).
 
 Finally, suppose we want to evaluate the Gaussian process regression at a 
 series of time points $\mathbf{t_*}$. Let $*$ indicate that the data comes from 
@@ -63,7 +67,7 @@ as $\mathbf{k}_* = \mathbf{k}(\mathbf{t_*})$. The model of the metric function i
 thus seen to be:
 \begin{equation}
 \label{metric-model}
-\mathbf{m}_*(\mathbf{t}_*) = \mathbf{k}_*^\top \left(K + u^2I\right)^{-1}\mathbf{m}
+\mathbf{m}_*(\mathbf{t}_*) = \mathbf{k}_*^\top \left(\K + u^2\I\right)^{-1}\mathbf{m}
 \end{equation}
 A full derivation of Equations \ref{mean-func}-\ref{metric-model} can be found in 
 \cite{rasmussen2006gaussian}. This resource also contains detailed discussions of 
