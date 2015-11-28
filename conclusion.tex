@@ -50,3 +50,14 @@ comparing the relative cost (in units of the metric, not necessarily
 economic) for selecting one cycle over another. The work here, thus, 
 should be seen as a stepping stone to further fuel cycle scenario evaluation
 work.
+
+Lastly, dynamic time warping could itself serve a purpose as the objective 
+function is a fuel cycle optimization.  For example, suppose a demand curve 
+such as 1\% power growth is known. The DTW distance from the total generated
+power to this curve could be minimized as a function of the reactor 
+deployment schedule. Such a distance could potentially yeild a more 
+precise or faster optimization process than simply taking the sum of 
+the differences between two time series. Such an optimization would also allow
+for matching on multiple time series features simeltaneously while retaining
+a real-valued objective function.
+
