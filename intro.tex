@@ -4,39 +4,39 @@ The act of fuel cycle benchmarking has long faced methodological issues
 on what metrics to compare, how to compare them, and at what point in the
 fuel cycle they should be compared. The benchmarking mechanism described 
 here couples Gaussian process models (GP) to dynamic time warping (DTW).
-Together these address how to perform fundemental tasks for common nuclear
+Together these address how to perform fundamental tasks for common nuclear
 fuel cycle benchmarking. 
 
 Confusion in this area is partly because such activities 
-are not benchmarking in the strictess validation sense. Most fuel
+are not benchmarking in the strictest validation sense. Most fuel
 cycle benchmarks are more correctly called code-to-code comparisons or 
-inter-code comparisons, as they compare simultor results. Importantly, 
+inter-code comparisons, as they compare simulator results. Importantly, 
 these take place in the absence of true experimental data. The number of 
 real-world, industrial scale nuclear fuel cycles that have historically been 
 deployed is not sufficient for statistical accuracy even for the Once-Through 
-sceanario. For other fuel cycles, industrial data is even more stark. 
+scenario. For other fuel cycles, industrial data is even more stark. 
 Since fuel cycle simulation is thus effectively impossible to validate, 
-we should look to methods non-judgemental methods of benchmarking. The 
+we should look to methods non-judgmental methods of benchmarking. The 
 results of any given simulator should be evaluated in reference to how 
 it performs against other simulators in such a way that acknowledges that 
-any and all simulators may demonstrate incorrect behaviour. No simulator
+any and all simulators may demonstrate incorrect behavior. No simulator
 by fiat produces the `true' or reference case.
 
 The other major conceptual issue with fuel cycle benchmarking is that there 
 is no agreed upon mechanism for establishing a figure-of-merit (FOM) for 
 a metric that is uniform across all metrics of interest. For example, 
 repository heat load may be examined only at the end of the of the simulation,
-separatred plutonium may be used whereever it peaks, and natural uranium 
+separated plutonium may be used wherever it peaks, and natural uranium 
 mined might be of concern only in 100 years. Comparing at a specific point 
-in time fails to take into account the behaviour of that metric over time and 
-can skew any decisons made based soley on that metric. Additionally, the 
+in time fails to take into account the behavior of that metric over time and 
+can skew any decisions made based solely on that metric. Additionally, the 
 time of comparison varies based on the metric itself. This is a necessary 
 side effect of picking a single point in time.
 Furthermore, such FOMs are not useful for indicating why simulations differ, 
-only that they do. Moroever, if such FOM match, this does not indicate
-that the simulator actually agree. Their behaviour could be radically 
+only that they do. Moreover, if such FOM match, this does not indicate
+that the simulator actually agree. Their behavior could be radically 
 different at every other point in time.  It should be noted that 
-Equillibrium and quasi-static fuel cycle simulators are sometimes able to 
+Equilibrium and quasi-static fuel cycle simulators are sometimes able to 
 ignore these issues, because all time points are treated equally.
 
 Some dynamic FOMs do exist. However, these typically require that the metric
@@ -44,17 +44,17 @@ data be too well-behaved for comparison purposes. Consider the case of total
 power produced [GWe]. A FOM could be the sum over time of the relative error 
 between the total power of a single simulator and the root-mean squared total power
 of all the simulators together. However, such an FOM fails if the total power
-time series have different lengths. Such differences could arrise because 
+time series have different lengths. Such differences could arise because 
 of different time steps (1 month versus 1 year) or because of different 
 simulation durations. Suppose that a comparison is posed as "until transition"
-in a transion scenario, it could defeat the purpose of the benchmark to
+in a transition scenario, it could defeat the purpose of the benchmark to
 force different simulators to have the same time-to-transition if they 
 nominally would have had distinct. 
  
 The mechanisms used for benchmarking that have been discussed so far typically
-do not incorporate modeling uncertainy coming from the simulator itself.
+do not incorporate modeling uncertainty coming from the simulator itself.
 This is likely because most simulators do not compute uncertainty on their 
-own. Instead they rely on perturbation studies or stochatic wrappers around 
+own. Instead they rely on perturbation studies or stochastic wrappers around 
 the simulator. Furthermore, metrics may add their own uncertainty from the 
 data that the bring in (half-lives, cross-sections, etc.) and the 
 operations they perform. However, even if such error bars were available for
@@ -72,8 +72,8 @@ and total power generated is the sum of the power from each reactor type
 (such as LWRs and FRs).  These attributes are common to the overwhelming 
 majority of fuel cycle metrics.
 
-Gaussian proccess models are proposed here as a method to incorporate 
-metric uncertainties and make the analysis non-judmental to any particular 
+Gaussian process models are proposed here as a method to incorporate 
+metric uncertainties and make the analysis non-judgmental to any particular 
 simulator. Roughly speaking, a Gaussian process is a regression technique
 that models the relationship between independent and dependent parameters
 by fitting the covariance to a nominal functional form, or kernel.
@@ -87,11 +87,11 @@ from as many simulator results as possible and it will treat each simulators
 results in the same manner. Unlike a relative error analysis, no simulator
 needs to be taken as the base case. The Gaussian process model itself becomes
 the target to compare against. 
-Moreover, the covairances do not need to be known to perform the benchmark.
-They are estimated by the Guassian process. Furthemore, once the 
+Moreover, the covariances do not need to be known to perform the benchmark.
+They are estimated by the Gaussian process. Furthermore, once the 
 hyperparameters are known, this can be used as a representative model for 
 any other time series. Additionally, the incorporation of the uncertainties
-in a gaussian process are known to be more accurate (closer means) than 
+in a Gaussian process are known to be more accurate (closer means) than 
 assuming uncorrelated uncertainties.  The trade-off here is that the 
 model is less precise (higher standard deviations) than the uncorrelated 
 case. Such a trade off is likely desirable because no simulator is 
