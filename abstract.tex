@@ -1,14 +1,14 @@
 This paper presents a new fuel cycle benchmarking analysis methodology
 by coupling Gaussian process regression, a popular technique in Machine 
 Learning, to dynamic time warping, a mechanism widely used in speech 
-recognition. Together they generate figures-of merit that are applicable to
-any time series metric that a benchmark study may use. The figures-of-merit
-take account for uncertainty in the metric itself, utilize information
-across the whole time domain, and does not require that the simulators
-use a common time grid. A distance measure is detailed that can be used to 
-compare the performance of each simulator for a given metric. Additionally, 
-a contribution measure is derived that can be used to rank order metrics
-that contribute to a corresponding total metric. Lastly, this paper 
+recognition. Together they generate figures-of-merit that are applicable to
+any time series metric that a benchmark may study. The figures-of-merit
+account for uncertainty in the metric itself, utilize information
+across the whole time domain, and do not require that the simulators
+use a common time grid. Here, a distance measure is defined that can be used 
+to compare the performance of each simulator for a given metric. Additionally, 
+a contribution measure is derived from the distance measure that can be used 
+to rank order the importance of fuel cycle metrics. Lastly, this paper 
 warns against using standard signal processing techniques for error reduction.
-This is because error reduction is better handled by the Gaussian process 
-regression itself.
+This is because it is found that error reduction is better handled by the 
+Gaussian process regression itself.
