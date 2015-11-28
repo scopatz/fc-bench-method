@@ -84,29 +84,31 @@ are common to the overwhelming majority of fuel cycle metrics and so FOMs
 may take advanatage of these structures.
 
 Gaussian process models are proposed here as a method to incorporate 
-metric uncertainties and make the analysis non-judgmental to any particular 
-simulator. Roughly speaking, a Gaussian process is a regression technique
+metric uncertainties and make the analysis non-judgmental with respect to 
+any particular
+simulator. Roughly speaking, a Gaussian process regression is a 
+statistical technique
 that models the relationship between independent and dependent parameters
 by fitting the covariance to a nominal functional form, or kernel.
 The kernel may have as many or as few fit parameters (also called 
-hyperparameters) as desired. One often used kernel is the squared 
-exponential, or Gaussian distribution, though linear kernels and Gaussian
-noise kernels are also frequently used. 
+\emph{hyperparameters}) as desired. One often used kernel is the squared 
+exponential, or Gaussian distribution. Linear kernels and Gaussian
+noise kernels are also frequently used alternatives. 
 
-Using this mechanism is desirable because the model can be generated
-from as many simulator results as possible and it will treat each simulators
-results in the same manner. Unlike a relative error analysis, no simulator
-needs to be taken as the base case. The Gaussian process model itself becomes
-the target to compare against. 
+Using a Gaussian process is desirable because the model can be generated
+from as many simulators as available and it will treat the results of
+each simulators in the same manner. Unlike a relative error analysis, no 
+simulator needs to be taken as the fiducial case. The Gaussian process model 
+itself becomes the target to compare against. 
 Moreover, the covariances do not need to be known to perform the benchmark.
 They are estimated by the Gaussian process. Furthermore, once the 
 hyperparameters are known, this can be used as a representative model for 
-any other time series. Additionally, the incorporation of the uncertainties
+any desired time grid. Additionally, the incorporation of the uncertainties
 in a Gaussian process are known to be more accurate (closer means) than 
-assuming uncorrelated uncertainties.  The trade-off here is that the 
+assuming uncorrelated uncertainties.  The trade off is that the 
 model is less precise (higher standard deviations) than the uncorrelated 
-case. Such a trade off is likely desirable because no simulator is 
-necessarily more correct than any other simulator. These features are all 
+case \cite{hodlr}. Such a trade off is likely desirable because no simulator 
+is necessarily more correct than any other simulator. These features are all 
 necessary for inter-code comparisons where an outlier simulator may be the 
 most correct (perhaps it is higher fidelity than the others). Thus it
 becomes important to quantify outliers rather than discard them.
