@@ -85,7 +85,7 @@ Gaussian process regression. For the remainder of this paper, George is used
 for its superior performance characteristics and easier-to-use interface.
 
 For purposes of nuclear fuel cycle benchmarking, Gaussian processes can be used to
-create models of each component feature (e.g. LWRs and FRs here) from the 
+create models of each component feature (e.g. LWRs and FRs) from the 
 results of all simulators together. Other regression techniques could also be used 
 to create similar models.  However, Gaussian processes have the advantage of 
 incorporating modeling uncertainty, as seen above. The optimization of the 
@@ -93,13 +93,13 @@ hyperparameters yields the most accurate results for the model. Furthermore, the
 choice of kernel function can be tailored the functional form of the metric, if 
 necessary. The exponential squared function was chosen because it is generic. If the 
 metric is periodic, for instance, a cosine kernel may yield a more precise model. 
-So while other regression techniques could be used, the Gaussian processes 
+So while other regression techniques could be used, Gaussian processes 
 encapsulate the correct behavior necessary for a non-judgmental benchmark while 
 also remaining flexible to the particularities of the metric under examination.
 
 Using the sample data from \S\ref{setup}, three models can be constructed:
 generated power from LWRs $m_*^{\LWR}(t)$, generated power from FRs $m_*^{\FR}(t)$, 
-and total generated power $m_*(t)$. Assuming only floating point precision is as 
+and total generated power $m_*(t)$. Assuming only floating point precision as 
 the metric uncertainty, these Gaussian process models can be seen in Figures 
 \ref{gwe-model-lwr} - \ref{gwe-model-total} along with the original time series 
 from the simulators.
@@ -136,20 +136,22 @@ training set for the model.}
 
 \clearpage
 
-Furthermore, Figure \ref{gwe-model-total} displays the model of the total generated
-power and not the total of the constituent models. Symbolically, 
+Also note that Figure \ref{gwe-model-total} displays the model of the total 
+generated power and not the total of the constituent models. Symbolically, 
 \begin{equation}
 \label{total-model}
 m_* \approx \GP \left[\sum_i^I m_s^i\right] \ne \sum_i^I \GP m_s^i
 \end{equation}
 This is because the uncertainties are applied differently and the hyperparameter
-optimization would not be consistent between these two. It is thus considered safer
-to sum over the features for each simulator before applying the Gaussian process
+optimization would not be consistent if one were to sum up constitiuent 
+models. It is thus considered safer
+to sum over the features for each simulator individually before applying the 
 regression.
 
-Thus far, the metric data has had effectively zero uncertainty.  But one of the 
+Thus far the metric data has had effectively zero uncertainty.  But one of the 
 desirable features of the Gaussian process regression is that it accounts for 
-meaningful uncertainties. Suppose that the time series data was much sparser and that 
+meaningful uncertainties. As a thought experiment, suppose that the time 
+series data was much sparser and that 
 the uncertainty associated with each value started off at zero and then grew at 
 a rate of 1\% per decade. A model of the total generated power with this uncertainty 
 is shown in Figure \ref{gwe-model-total-with-uncertainty}.
@@ -172,7 +174,8 @@ from the choice of kernel begin to be visible in model whenever the uncertaintie
 relatively high. Both of these match intuition about how uncertain systems should
 work.
 
-Even though these uncertainty features are highly desirable, most nuclear fuel
+Again, even though these uncertainty features are highly desirable in 
+genric benchmarking applications, most nuclear fuel
 cycle simulators do not report uncertainties along with the metrics they compute.
 For this reason, the remainder of the examples in the paper will use the 
 zero-uncertainty models as presented in Figures \ref{gwe-model-lwr} - 
