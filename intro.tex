@@ -127,7 +127,8 @@ the same time basis.  It does not matter if one time series is longer than
 the other or if they have different sampling frequencies. The DTW distance
 instead compares the shape the curves themselves. 
 
-There is nothing about DTW that is specific to speech recognition. The method
+There is nothing about the dynamic time warping algorithm that is specific 
+to speech recognition. The method
 may be used in any time series analysis. For nuclear fuel cycle benchmarking,
 the DTW distance can be used to compare the metric from each simulator to 
 Gaussian process model. Using this as an FOM has the advantage of 
@@ -135,28 +136,38 @@ incorporating information from the whole time series, rather than just a
 specific point in the cycle.
 
 Many benchmarking studies also wish to create a rank ordering of parameter
-importance over all simulators.  For example, ``In a transition scenario,
-which reactor is most important to the total generated power?'' or ``Which
+importance over all simulators. Examples of such benchmark questions include, 
+``In a transition scenario,
+which reactor is most important to the total generated power?'' and ``Which
 nuclides are most important to the repository heat load?'' DTW distances 
-of gaussian process models of the constient parameters (eg the power from
-each reactor type) to a Gaussian process model of the total (eg total 
-generated power) can be used as a FOM or to derive other FOMs. This paper
-proposes a novel contribution metric, that is a normalized version of the DTW 
+of Gaussian process models of the constient parameters (e.g. the power from
+each reactor type) to a Gaussian process model of the total (e.g. total 
+generated power) can be used as a FOM itself or to derive other FOMs. 
+This paper proposes a novel contribution metric. 
+Contribution is taken to be a normalized version of the DTW 
 distance for such rank ordering activities.
 
-The remainder of this paper takes a narrative approach which walks through 
-a ficticious example benchmarking activity using generated power [GWe] data 
-from DYMOND and Cyclus. The underlying fuel cycle being modeled is an
-LWR to FR transition scenario that occurs over the following 200 years.  
-This data should be regarded as for demonstration purposes only. However, 
-using results from actual fuel cycle simultors shows how the non-judgemental
-benchmarking works in practice. Completely faked data could have been used 
-instead, but this demonstartion is more believable.
+The remainder of this paper takes a narrative approach that walks through 
+a ficticious example benchmarking activity. Generated power [GWe] data 
+from DYMOND \cite{yacout2005modeling,feng2015dymond} and Cyclus 
+\cite{cyclus_v1_0} is used throughout. The underlying fuel cycle being 
+modeled is an
+LWR to FR transition scenario that occurs over 200 years, starting from 2010.  
+This data should be regarded as for demonstration purposes only. No deep
+fuel cycle truths should be directly inferred and the data itself should be 
+considered preliminary. However, 
+using results from actual fuel cycle simultors shows how a 
+non-judgemental benchmarking works in practice. Completely faked data could 
+have been used instead, but this demonstration of the method is more 
+believable.
 
-In \S \ref{setup}, the problem is setup, mathematical notation is introduced, 
-and the raw simulator data is presented. In \S \ref{gp}, Gaussian process 
-modeling is discussed. In \S \ref{dtw}, the dynamic time warping concept is
-shown. In \S \ref{contribution}, the novel contribution metric is introduced.
-Then in \S \ref{filtering}, the merits of standard time series filtering
-techniques gone over. Finally, \S \ref{conclusion} contains concluding remarks
-and ideas for future work in this area.
+In \S \ref{setup}, the problem is set up, mathematical notation is introduced,
+and the raw data from the simulators is presented. In \S \ref{gp}, Gaussian 
+process 
+modeling is introduced. In \S \ref{dtw}, the dynamic time warping concept is
+discussed. In \S \ref{contribution}, the novel contribution metric is 
+derrived.
+\S \ref{filtering} warns against standard time series filtering
+techniques. And finally, \S \ref{conclusion} contains concluding remarks
+and ideas for future work in fuel cycle benchmarking and using the mechanisms
+presented here.
