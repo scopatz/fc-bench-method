@@ -19,9 +19,9 @@ allowing for a better signal-to-noise ratio.
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width=0.45\textwidth]{fft-lwr-model.eps}
+\includegraphics[width=0.9\textwidth]{fft-lwr-model.eps}
 \caption{Low-pass FFT filter of LWR Gaussian process model $m_*^\LWR$ alongside
-the unfiltered model model.}
+the unfiltered model itself.}
 \label{fft-lwr-model}
 \end{figure}
 
@@ -51,5 +51,44 @@ very similar and so their contribution to a DTW is less cooresponding less than
 lower coefficients. Coupling MFCC to DTW is an extremely common method employeed in 
 speech recognition systems.  
 
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.9\textwidth]{mfcc-lwr-model.eps}
+\caption{Representative Mel-frequency cepstral coefficients (solid lines) of an 
+LWR Gaussian process model $m_*^\LWR$ alongside the model itself (dashed line).}
+\label{mfcc-lwr-model}
+\end{figure}
 
-Recomended to pick a different kernel instead.
+Figure \ref{mfcc-lwr-model} displays the MFCC curves for the LWR Gaussian 
+process model with the model itself. None of these curves, not even the major 
+coefficient resembles the actual model.  Rather, the cosine basis for MFCCs
+are clearly visible.  As with the low-pass filter, the MFCCs also have 
+uncharacteristic negative components.  Moreover, 
+the metric data is not sampled frequently enough to have meaningful
+time windows. For fuel cycle metrics here, there is one data point per year for 
+where the signal itself may change in a meaningful way each year. By comparsion, 
+in speech recognition, audio is sampled at least at 22050 hz for charactersitic 
+signals on the order of 1 second.  The data volume for fuel cycle benchmark metrics
+is simply too low for MFCC transformations to be applicable. 
+
+Still, suppose the contibution measure is computed for the MFCCs of LWR, FR, and 
+total generated power models.  In this case the LWR contribution is found to be 
+0.572 while the FR contribution is 0.899. Using the models directly as was done 
+in \S\ref{contribution}, the contribution values were 0.298 and 0.859 respectively.
+This implies that using the MFCCs had the opposite effect as desired.  The MFFCs
+added error to the system and mad the LWR and FR contributions seem more alike than 
+they truely are.
+
+Therefore filtering the models prior to dynamic time warping is a dubious practice
+in the general case. In all likelihood, the metric does not meet the underlying 
+assumptions of the filter. The metric may not be periodic or may not be sampled 
+frequenctly enough. Sometimes it may be possible to construct as metric that does
+meet these qualifcations, such as if the generated power is sampled monthly and 
+seasonal demand behaviour is noticable. In such a case, it is instead recomended
+to pick a different kernel for the Gaussian process model, such that these 
+periodic behaviours are captured.  The regession itself then takes on the role of 
+minimizing model uncertainty. Further filtering to this end becomes redundant and
+dangerous.  Additionally, it is unlikely that 
+the majority of the simulators would be able to calculate such a high-fidelity metric.
+That alone should disqulify such a metric from any benchmarking study or
+inter-code comparsion.
