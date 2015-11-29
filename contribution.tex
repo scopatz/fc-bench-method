@@ -32,7 +32,8 @@ computed as the DTW distance between the total model and this baseline.
 However, in most cases the metrics are not allowed to be negative, 
 a baseline of zero is suitable, and Equation \ref{D-def} applies.
 
-The contribution of a given partition to the total is thus defined as follows:
+The contribution figure-of-merit of a given partition to the total is thus 
+defined as follows:
 \begin{equation}
 \label{cont}
 c^i = 1 - \frac{d(m_*^\Total, m_*^i)}{D(m_*^\Total)}
@@ -41,7 +42,7 @@ $D$ is seen to normalize the model-to-model distance while subtracting this
 ratio from unity makes higher contribution values more important.  
 Using the sample data, $c^\LWR = 0.298$ and $c^\FR = 0.859$. This again shows
 that the FRs are more important to the total power of the whole cycle.
-Here though, higher contributions yield higher importance and the values
+Here though, higher contribution scores yield higher importance and the values
 are always between zero and one.
 
 Note that even though $c$ is a fraction, it is not normalized across 
@@ -67,10 +68,10 @@ Furthermore, because of the constraint on the total, $\sum c^i$ can never
 reach $I$, unless there is only a single component to the total or the 
 total is zero valued everywhere (which implies that the constituents are also 
 zero everywhere). Thus, dividing $c^i$ by $I$ with the aim of normalizing the 
-sum of the $c^i$ is incorrect for any situation of interest in a fuel 
+sum of the $c^i$ is incorrect for any situation of interest to a fuel 
 cycle benchmark.
 
-Thus if a truly normalized version of contribution is desired, it must 
+If a truly normalized version of contribution is desired, it must 
 use the sum of the actual contributions. Define the normalized contribution 
 as $|c^i|$, 
 \begin{equation}
@@ -82,8 +83,8 @@ individual component $c^i$ must be known prior to the normalization.
 Furthermore, since the sum is typically greater than 1, the difference 
 between components is often smaller in the normalized form than in the
 more pronounced unnormalized contribution.
-The only advantages that $|c^i|$ holds over $c^i$ is that it is defined on 
-the $[0,1]$ and that $\sum |c^i| = 1$. For use as a FOM, both versions
+The only advantages that $|c^i|$ conferss over $c^i$ are that it is defined on 
+the range $[0,1]$ and that $\sum |c^i| = 1$. Otherwise, both versions of the FOM
 have the same properties.
 
 \begin{figure}[htb]
@@ -102,7 +103,7 @@ as a function of time.}
 \label{normc-of-t}
 \end{figure}
 
-Furthermore, both $c^i$ and $|c^i|$ can be viewed as a function of time.
+Both $c^i$ and $|c^i|$ can be viewed as a function of time.
 Doing so in a nuclear fuel cycle benchmark may help identify artifacts in the
 calculation that are the result of the time domain chosen for the benchmark.
 Figures \ref{c-of-t} \& \ref{normc-of-t} display the contribution and 
