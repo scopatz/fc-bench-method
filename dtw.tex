@@ -99,8 +99,9 @@ d = \frac{C_{A,B}}{A + B}
 That is, $d$ is the final value of the cost matrix divided by the maximal length 
 of the warp path.
 
-For all practical purposes in benchmarking, $A$ and $B$ can be forced to have the 
-value because the Gaussian process model can be used to predict a time series 
+For all practical purposes in nuclear fuel cycle benchmarking, $A$ and $B$ can be 
+forced to have the same
+value. This is because the Gaussian process model can be used to predict a time series 
 with whatever time grid is desired.  The advantage of using a regression model 
 is that it allows the analyst to force the same time grid.  The advantage of 
 dynamic time warping is that ensuring the same time grid is not necessary.
@@ -116,25 +117,25 @@ The warp path is superimposed as the white curve on top of the cost matrix.}
 \label{cost-lwr-model-to-lwr-cyclus}
 \end{figure}
 
-Figure \ref{cost-lwr-model-to-lwr-cyclus} displays and example cost matrix 
+Figure \ref{cost-lwr-model-to-lwr-cyclus} displays an example cost matrix 
 as a heat map for the DTW between the LWR Gaussian process model 
 $m_*^\LWR(t)$ and the original Cyclus LWR time series $m_\CYCLUS^\LWR(t)$.
 Additionally, the warp path between these two is shown as the white curve
-on top of $C$. Note that while $w$ is monotonic along both time axes, the
+on top of the heat map. Note that while $w$ is monotonic along both time axes, the
 path it takes minimizes the cost matrix at every step. Higher cost regions
 have the effect of pushing the warp path along one axis or another. The 
 distance between these two curves $d(m_*^\LWR, m_\CYCLUS^\LWR)$ is computed 
 to be 1.053 GWe.
 
-The process of dynamic time warping models to raw simulator data can be 
+The process of dynamic time warping model generated data to raw simulator data can be 
 repeated for all combinations of simulators and features. The 
 $d(m_*^i, m_s^i)$ that are computed may then directly serve as a FOM for
-outlier identification. Only distances with the same feature my be compared
-because they share the same model. For instance, it is valid to compare
+outlier identification. Only distances between the same feature $i$ may be compared,
+as they share the same model. For instance, it is valid to compare
 $d(m_*^\LWR, m_\DYMOND^\LWR)$ and $d(m_*^\LWR, m_\CYCLUS^\LWR)$. However,  
 it is not valid to compare $d(m_*^\LWR, m_\DYMOND^\LWR)$ and 
-$d(m_*^\FR, m_\DYMOND^\FR)$.  In the situation, where the simulator data
-has different time grids, the model can be evaluated with each time grid
+$d(m_*^\FR, m_\DYMOND^\FR)$.  In the situation, where the simulators 
+have different time grids, the model can be evaluated with each time grid
 prior to computing the corresponding DTW distances and the comparison will
 remain valid.
 
@@ -142,11 +143,11 @@ remain valid.
 \centering
 \caption{Distances [GWe] between models and simulators for all combinations of 
 simulators (DYMOND and Cyclus) and metric features (generated power for 
-LWRs, FRs, and total). The simulators are presented in the rows and the
+LWRs, FRs, and in total). The simulators are presented in the rows and the
 features are given as columns. Distances may only be compared along 
 each column.}
 \label{d-compare}
-\begin{tabular}{l|c|c|c|}
+\begin{tabular}{l||c||c||c|}
                 & \textbf{LWR} & \textbf{FR} & \textbf{Total} \\
 \hline
 \textbf{DYMOND} & 1.452        & 2.783       & 3.022          \\
@@ -157,9 +158,9 @@ each column.}
 \end{table}
 
 Table \ref{d-compare} gives the distances for all simulator and feature 
-combinations in the sample data. Only the differences between DYMOND and 
-Cyclus for the same feature may be compared.  However, this does 
-indicate that the DYMOND is closer to the model since both the FR and Total
+combinations in the sample data presented in \S\ref{setup}. Only the differences between DYMOND and 
+Cyclus for the same feature may be directly compared.  However, Table \ref{d-compare} 
+does indicate that the DYMOND is closer to the model since both the FR and Total
 generated power distances are closer for DYMOND than for Cyclus.  As many
 simulators as desired could be added to the benchmark and distances could 
 be tallied for them as well. At a sufficient number of simulators, usual 
@@ -173,7 +174,7 @@ may stem from the more correct simulator. The term outlier is not a
 condemnation on its own.
 
 The second application of DTW to nuclear fuel cycle benchmarking is as a
-FOM for contribution of constituent features to a total metric. To do so, 
+FOM for contribution of constituent features to a total metric. For this application, 
 compute the distance between the model of the total and the model of the 
 part, namely $d(m_*^\Total, m_*^i)$ for all $i \in I$. This provides a 
 measure of how much the total metric is determined by a particular part
