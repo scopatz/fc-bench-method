@@ -62,13 +62,13 @@ Here, $u$ is the modeling uncertainty as denoted in the previous section,
 $\I$ is the identity matrix, and $n$ is the number of training points (the 
 sum of the lengths of all of the time series). The hyperparameters $\ell$ and
 $\sigma^2$ may be varied such that Equation \ref{log-p} is minimized. 
-In this way, and optimal model for the metric is obtained.
+In this way, an optimal model for the metric is obtained.
 
 Finally, suppose we want to evaluate the Gaussian process regression at a 
 series of time points $\mathbf{t_*}$. 
 The covariance vector between this time grid and the training data is denoted
-as $\mathbf{k}_* = \mathbf{k}(\mathbf{t_*})$. The Gaussian process model of 
-the metric function is on the $t_*$ time grid is thus seen to be:
+as $\mathbf{k}_* = \mathbf{k}(\mathbf{t_*})$. The value of Gaussian process 
+model of the metric function on the $\mathbf{t_*}$ time grid is thus seen to be:
 \begin{equation}
 \label{metric-model}
 \mathbf{m}_*(\mathbf{t}_*) = \mathbf{k}_*^\top \left(\K + u^2\I\right)^{-1}\mathbf{m}
