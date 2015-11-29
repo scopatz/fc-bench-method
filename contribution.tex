@@ -9,27 +9,28 @@ The distances alone, though, have the inverse meaning when trying to
 compute a FOM for contribution to a fuel cycle.  For example, the 
 question may be posed as, ``Are LWRs or FRs more important to the fuel 
 cycle as a whole?'' While distances can answer this question, smaller 
-disantances have higher impact. Preferably, a higher FOM would yield a 
+disantances have higher impact. Preferably, a higher FOM score would yield a 
 higher impact. Furthermore, the distances in the previous section have
 the same units as the cost matrix and are similarly bounded. A better 
 FOM for contribution would be unitless and defined on the range $[0,1]$.
 
 Thus, let $c$ be the \emph{contribution} FOM that satisfies the above 
 constraints. To define $c$, first define $D$ as the maximal possible 
-distance for the total time series, which has length $A$.
+distance for the model of the total. Recall that this time series has length $A$.
+$D$ is, therefore, the L1 norm of the model of the total time series divided
+by twice its length. 
 \begin{equation}
 \label{D-def}
 D(m_*^\Total) = \frac{\left|m_*^\Total\right|_1}{2A}
 \end{equation}
-That is, $D$ is the L1 norm of the model of the total time series divided
-by twice its length. This is the equivalent to computing the DTW distance
+This is the equivalent to computing the DTW distance
 between $m_*^\Total$ and the curve where the metric is zero for all time 
-(i.e. the t-axis itself).  Therefore, this relies on the notion that 
-metric is necessarily non-negative everywhere.  Is the metric is allowed to 
+(i.e. the t-axis itself).  This relies on the notion that 
+metric is necessarily non-negative everywhere.  If the metric is allowed to 
 be negative, another baseline curve could be chosen. $D$ would then be 
 computed as the DTW distance between the total model and this baseline.
-However, in most cases the metrics are not allowed to be negative so 
-a baseline of zero is suitable.
+However, in most cases the metrics are not allowed to be negative, 
+a baseline of zero is suitable, and Equation \ref{D-def} applies.
 
 The contribution of a given partition to the total is thus defined as follows:
 \begin{equation}
