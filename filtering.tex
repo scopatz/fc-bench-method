@@ -3,11 +3,12 @@
 \label{filtering}
 
 It is tempting to insert standard filtering techniques from signal processing 
-after creating a Gaussian process model but prior to any DTW or contribution 
-calculations. A fast Fourier transform (FFT) \citeme based low-pass filter or 
-Mel-frequency cepstral coefficients (MFCC) \citeme could be used to reduce error 
+after creating a Gaussian process model but prior to any dynamic time warping 
+calculations. A fast Fourier transform (FFT) based low-pass filter 
+\cite{merletti1999standards,moreland2003fft} or 
+Mel-frequency cepstral coefficients (MFCC) \cite{muda2010voice,imai1983cepstral} could be used to reduce error 
 in the model itself, 
-and thus make the contribution measure more precise. Unfortunately, most 
+and thus make the contribution FOM more precise. Unfortunately, most 
 fuel cycle metrics are not well-formed candidates for such filtering strategies.
 Including such filters as part of the analysis can easily lead to wildly unphysical
 models.
