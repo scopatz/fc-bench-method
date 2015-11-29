@@ -2,48 +2,55 @@
 \section{Dynamic Time Warping}
 \label{dtw}
 
-Now that there are representative models of all features, the issue revolves 
-around how to compare these time series models. Dynamic time warping \cite{muller}
+Now that there are representative models of all time series, the issue at hand is
+how to compare these models. Dynamic time warping
 is a method for computing the distance between any two time series. The time 
 series need not be of the same length.  Furthermore, the time series may be 
 decomposed into a set of representative spectra and the DTW may still be applied.
 The distance computed by DTW is a measure of the changes that would need to be 
 made to one time series to turn it into (warp) the other time series. Thus, 
 the DTW distance is a measure over the whole time series, and not just a 
-single characteristic point.
+single characteristic point. As with Gaussian processes, a number of more thorough
+resources, such as \cite{muller}, cover dynamic time warping in greater detail.
+Here a minimal introduction is given that enables meaningful figure-of-merit 
+calculations.
 
 With respect to nuclear fuel cycle benchmarks, there are two main DTW applications.
 The first is to compute the distance between a Gaussian process model and each of 
-the simulators that made up the training set.  This gives a quantitative measure 
+the simulators that made up the training set for that model. This gives a 
+quantitative measure 
 of how far each simulator is from the model and can help determine which 
 simulators are outliers. To maintain a non-judgmental benchmark, though, it is 
 critical to not then use this information to discard outliers.  Rather, outlier
 identification should be used as part of an inter-code comparison. If one simulator
 is an outlier for a given metric, the reasons for this should be investigated. 
-For example, the outlier simulator may be at higher fidelity level, there may be 
+For example, the outlier simulator may be at a higher fidelity level, there may be 
 a bug in the outlier, or there may be a bug in all other simulators. Identifying 
 outliers for many metrics could help discover the underlying cause of any 
 discrepancies.
 
-The second application of DTWs to benchmarking is to compare the constituent 
-feature models to the total model.  These distances computed in this way allow 
+The second application of dynamic time warping to benchmarking is to compare 
+the constituent 
+feature models to the total model.  Distances computed in this manner allow 
 for a rank ordering of the components.  This enables the benchmark to make claims
 about which features drive the fuel cycle metric most strongly, over the whole 
-simulation time for all simulators. Traditionally, the simulators have to agree
+simulation time domain and for all simulators. Traditionally, the simulators have 
+to agree
 within nominal error bounds ($<5\%$) for a benchmark to make such a claim.  Here,
 the simulators need not necessarily agree since the Gaussian process models are
 used as representatives.  In this application, it is useful to recast the DTW 
-distance as a measure of contribution.  This new FOM will be presented in 
+distance as a measure of contribution.  Contribution FOMs will be presented in 
 \S\ref{contribution}.
 
-For any two time series, dynamic time warping consists of three part:
+For any two time series, dynamic time warping consists of three mathematical objects:
 the distance $d$, a cost matrix $C$, and a warp path $w$. The cost matrix 
 specifies how far a point on the first time series is from another point on the 
 other time series.  The warp path is then the minimal cost curve through this 
 matrix from the fist point in time to the last. The distance, therefore, is the
 total cost of traversing the warp path.
 
-The first step in DTW is to compute the cost matrix. Suppose that the first 
+The first step in a dynamic time warping algorithm is to compute the cost matrix. 
+Suppose that the first 
 time series $x$ has length $A$ indexed by $a$ and the second time series $y$ has 
 length $B$ indexed by $b$. It is helpful to define an $A\times B$ matrix $\Delta L$
 that is the $L_1$ norm of the difference of time series $x$ and $y$:
@@ -64,15 +71,16 @@ C_{a+1,b+1} & = \Delta L_{a,b} + \min\left[C_{a,b}, C_{a+1,b}, C_{a,b+1}\right]
 \end{equation}
 The boundary conditions in Equation \ref{cost-matrix} are equivalent 
 to applying an infinite cost to any $a$ or $b$ less than or equal to zero.
-The units of the cost matrix are the same as the metric. However, the 
-scale of the cost matrix is geometrically larger than the metric itself,
-due to its compounding recursive definition.
+The units of the cost matrix are the same as the units of the metric. However, the 
+scale of the cost matrix is geometrically larger than the metric itself. This is
+due to the compounding nature of the recursive definition of $C$.
 
 Given $C$, the warp path is thus a sequence of coordinate points that can then be 
 computed by walking backwards through the matrix from $(A, B)$ to $(1, 1)$.
 For a point $w_p$ in the warp path, the previous point $w_{p-1}$ is given by 
-where the cost is minimized among the locations one column to the left, one row
-down, and one diagonal element to left and down. Symbolically, 
+where the cost is minimized among the locations one column over $(a,b-1)$, 
+one row over $(a-1,b)$, and one previous diagonal element to $(a-1,b-1)$. 
+Symbolically, 
 \begin{equation}
 \label{warp-path}
 w_{p-1} = \argmin\left[C_{a-1,b-1}, C_{a-1,b}, C_{a,b-1}\right]
@@ -81,9 +89,9 @@ The maximum possible length of $w$ is thus $A + B$ and the minimum length is
 $\sqrt{A^2 + B^2}$. The warp path itself could potentially serve as a FOM.  
 However, doing so would not take into account the cost along this path.
 
-Therefore, the distance $d$ is defined as a FOM does include for the cost of the
-warp.  Due to the relations used to define the cost matrix, $d$ can be stated
-succinctly as:
+Therefore, the distance $d$ is defined as a FOM which does include for the cost of the
+warp.  Due to the recurssion relations used to define the cost matrix, $d$ can be 
+stated succinctly as:
 \begin{equation}
 \label{d-calc}
 d = \frac{C_{A,B}}{A + B}
