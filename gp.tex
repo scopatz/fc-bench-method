@@ -102,7 +102,7 @@ generated power from LWRs $m_*^{\LWR}(t)$, generated power from FRs $m_*^{\FR}(t
 and total generated power $m_*(t)$. Assuming only floating point precision as 
 the metric uncertainty, these Gaussian process models can be seen in Figures 
 \ref{gwe-model-lwr} - \ref{gwe-model-total} along with the original time series 
-from the simulators.
+from the simulators that train the model.
 It is important to note that even though the sample data is only for two simulators, 
 this method can handle any number of simulators, each with their own time grid, 
 without modification.
@@ -142,7 +142,8 @@ generated power and not the total of the constituent models. Symbolically,
 \label{total-model}
 m_* \approx \GP \left[\sum_i^I m_s^i\right] \ne \sum_i^I \GP m_s^i
 \end{equation}
-This is because the uncertainties are applied differently and the hyperparameter
+This is because the uncertainties are applied differently in these two cases. 
+Moreover, the hyperparameter
 optimization would not be consistent if one were to sum up constitiuent 
 models. It is thus considered safer
 to sum over the features for each simulator individually before applying the 

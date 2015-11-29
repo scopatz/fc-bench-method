@@ -16,7 +16,7 @@ FOM for contribution would be unitless and defined on the range $[0,1]$.
 
 Thus, let $c$ be the \emph{contribution} FOM that satisfies the above 
 constraints. To define $c$, first define $D$ as the maximal possible 
-distance for the model of the total. Recall that this time series has length $A$.
+distance from the model of the total. Recall that this time series has length $A$.
 $D$ is, therefore, the L1 norm of the model of the total time series divided
 by twice its length. 
 \begin{equation}
@@ -64,10 +64,10 @@ Furthermore, dividing the contribution by $I$ is not sufficient to
 normalize the sum of the $c^i$, in general.  This is because the 
 contribution is inherently a cumulative measure. If a component ever had a 
 non-zero value, it will always be seen to have contributed something. 
-Furthermore, because of the constraint on the total, $\sum c^i$ can never
-reach $I$, unless there is only a single component to the total or the 
+Because of this constraint on the total, $\sum c^i$ can never
+reach $I$ unless there is only a single component or the 
 total is zero valued everywhere (which implies that the constituents are also 
-zero everywhere). Thus, dividing $c^i$ by $I$ with the aim of normalizing the 
+zero). Thus, dividing $c^i$ by $I$ with the aim of normalizing the 
 sum of the $c^i$ is incorrect for any situation of interest to a fuel 
 cycle benchmark.
 
@@ -83,7 +83,7 @@ individual component $c^i$ must be known prior to the normalization.
 Furthermore, since the sum is typically greater than 1, the difference 
 between components is often smaller in the normalized form than in the
 more pronounced unnormalized contribution.
-The only advantages that $|c^i|$ conferss over $c^i$ are that it is defined on 
+The only advantages that $|c^i|$ confers over $c^i$ are that it is defined on 
 the range $[0,1]$ and that $\sum |c^i| = 1$. Otherwise, both versions of the FOM
 have the same properties.
 
@@ -105,7 +105,7 @@ as a function of time.}
 
 Both $c^i$ and $|c^i|$ can be viewed as a function of time.
 Doing so in a nuclear fuel cycle benchmark may help identify artifacts in the
-calculation that are the result of the time domain chosen for the benchmark.
+calculation that are the result of the time domain chosen for the benchmark itself.
 Figures \ref{c-of-t} \& \ref{normc-of-t} display the contribution and 
 normalized contribution respectively for both LWRs and FRs over the full 
 time domain. From these figures, the point where FRs become more important 
