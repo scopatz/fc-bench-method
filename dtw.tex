@@ -180,11 +180,11 @@ part, namely $d(m_*^\Total, m_*^i)$ for all $i \in I$. This provides a
 measure of how much the total metric is determined by a particular part
 over the whole time series for all simulators.
 Using this measure is only reasonable if the total metric is known 
-to be the sum of its constituents.  This assumption is reasonable for 
+to be the sum of its constituents.  This assumption is valid for 
 a large percentage of nominal benchmarking metrics. In particular, 
 mass flows and generated power both follow this rule. Metrics that are 
-linear transformations of this these basic metrics (such as decay heat or 
-radiotoxicity) will also conform to this constraints. The distances computed
+linear transformations of these basic metrics (such as decay heat or 
+radiotoxicity) will also conform to this constraint. The distances computed here
 can then be used to rank order the importance of each constituent feature. 
 Smaller distances are closer to the total and thus more important.
 
@@ -194,7 +194,7 @@ $d(m_*^\Total, m_*^\LWR) = 97.010$ while $d(m_*^\Total, m_*^\FR) = 19.503$.
 As expected, the FRs are a more important driver of the transition system 
 than the LWRs over the time domain of examined. Figures 
 \ref{cost-total-model-to-lwr-model} \& \ref{cost-total-model-to-fr-model}
-show the cost matrix and warp path for these two cases.  Notice that in the
+show the cost matrices and warp paths for these two cases.  Notice that in the
 FR case, the warp path is effectively flat until the FRs are deployed in 
 significant numbers. 
  
@@ -218,11 +218,11 @@ The warp path is superimposed as the white curve on top of the cost matrix.}
 \label{cost-total-model-to-fr-model}
 \end{figure}
 
-Thus DTW yields a meaningful mechanism for benchmarks to compare various
-sources of data and models that applies to any time series.  As a tool for
+In summary, dynamic time warping yields a meaningful mechanism for benchmarks to 
+compare various simulators and models. As a tool for
 outlier identification, it allows for each simulator to use its own native 
-time grid. As a tool for performing rank ordering of features, the distances
-are perfectly functional. However, lower distances implying higher 
-importance may be the opposite of intuition. The potential for confusion here
+time grid. As a tool for performing rank ordering of features, the DTW distances
+are a perfectly functional FOM. However, lower distances implying higher 
+importance may run counter to intuition. The potential for confusion, therefore,
 makes it less than ideal as a FOM on its own. A remedy for this is presented
-in the next section.
+in the next section in form of a new contribution FOM.
