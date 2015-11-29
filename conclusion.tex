@@ -33,7 +33,7 @@ two components (LWR and FR).  However, both Gaussian processes and DTW
 are inherently multivariate. More complex forms of analysis could therefore
 be performed. For example, the Gaussian process could jointly model the 
 effect from many inputs onto the metric. Perhaps the benchmark is formulated
-to look at the generated power as a function of time and the demand curve.
+to look at the generated power as a function of time and the power demand curve.
 In this case, a two dimensional GP model would be used. Alternatively, 
 suppose that a matrix time series of the all individual nuclide mass flows 
 are available. DTW is still able compute the distance between two 
@@ -53,7 +53,7 @@ should be seen as a stepping stone to further fuel cycle scenario evaluation
 work.
 
 Lastly, dynamic time warping could itself serve a purpose as the objective 
-function in a fuel cycle optimization.  For example, suppose a demand curve 
+function in a fuel cycle optimization.  For example, suppose a power demand curve 
 such as 1\% power growth is known. The DTW distance from the total generated
 power to this curve could be minimized as a function of the reactor 
 deployment schedule. Such a distance could potentially yield a more 
