@@ -3,7 +3,7 @@
 
 This paper demonstrates a robust method for generating figures-of-merit
 for nuclear fuel cycle benchmarking activities by coupling Gaussian process
-regression to dynamic time warping. This method takes advantages of modeling
+regression to dynamic time warping. This method takes advantage of modeling
 uncertainties in fuel cycle metrics if they are known. It is also capable 
 of handling the situation where different simulators output metric data on
 vastly different time grids. The distance computed by the dynamic time 
@@ -15,18 +15,19 @@ Any regression method could have been used to form a model. Similarly, any
 mechanism for comparing two time series could have been used as a measure
 of distance.  However, Gaussian processes and DTW were chosen because of 
 the nature of a benchmarks and inter-code comparisons that lack experimental
-validation. It is impossible to build out a given fuel cycle scenario
+validation. It is not possible to build out a given fuel cycle scenario
 and see how it performs 200 years in the future. Furthermore, using 
 historical data for validation provides too few cases for comparison and 
-each simulator could be tuned simply to match precisely historical events.
+each simulator could simply be tuned to precisely match historical events.
 Thus, each simulator in a benchmark could be valid or they all could be 
-valid. It is therefore necessary for the FOM to not skew for or against 
+invalid. It is therefore necessary for the FOM to not skew for or against 
 any particular simulator. Gaussian process models as used here do not 
 judge the simulators differently. The DTW then takes into account the 
 cumulative effect of the whole time domain and does not preferentially 
 select certain times.
 
-The example benchmark presented here was very simple consisting of only
+The sample benchmark presented here was very simple and was used for motivation 
+purposes only. It consisted of just
 two simulators (DYMOND and Cyclus) and one metric (generated power) with
 two components (LWR and FR).  However, both Gaussian processes and DTW
 are inherently multivariate. More complex forms of analysis could therefore
@@ -37,22 +38,22 @@ In this case, a two dimensional GP model would be used. Alternatively,
 suppose that a matrix time series of the all individual nuclide mass flows 
 are available. DTW is still able compute the distance between two 
 such matrices. This would yield a measure of how the mass flows themselves
-differ - taking into account each nuclide component - without rely on the
+differ - taking into account each nuclide component - without rely on a collapsed
 one dimensional total mass flow curve.  Such cases will be considered in
 future work as real inter-code comparison data becomes available.
 
 Furthermore, this work focused on the particular use case of benchmarking.
 However, the FOM calculations presented here could also be used to evaluate 
-different fuel cycle scenarios. DTW distances could be computed for between
-a business-as-usual once through scenario and a LWR-to-FR transition
-scenario or any other proposed scenario. This provides a measure for 
+different fuel cycle scenarios. DTW distances could be computed between
+a business-as-usual once through scenario and an LWR-to-FR transition
+scenario, or any other proposed scenario. This provides a measure for 
 comparing the relative cost (in units of the metric, not necessarily 
 economic) for selecting one cycle over another. The work here, thus, 
 should be seen as a stepping stone to further fuel cycle scenario evaluation
 work.
 
 Lastly, dynamic time warping could itself serve a purpose as the objective 
-function is a fuel cycle optimization.  For example, suppose a demand curve 
+function in a fuel cycle optimization.  For example, suppose a demand curve 
 such as 1\% power growth is known. The DTW distance from the total generated
 power to this curve could be minimized as a function of the reactor 
 deployment schedule. Such a distance could potentially yield a more 
