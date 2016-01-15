@@ -1,4 +1,4 @@
-manuscript = paper
+manuscript ?= paper
 references = refs
 latexopt   = -halt-on-error -file-line-error
 
