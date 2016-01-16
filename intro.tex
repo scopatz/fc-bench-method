@@ -96,7 +96,8 @@ metrics are time series and can be derived from the mass balances (or
 mass flows) \cite{wilson2011comparing,guerin2009benchmark,piet2011assessment,wigeland2014nuclear}. 
 Additionally, many metrics have an associated total metric that can be 
 computed from the linear combination of all of its constituent features. 
-For example, total mass flows are the sum of the mass flow of each nuclide
+For example, total mass flows per time step are the sum of the mass flow 
+of each nuclide per time step
 and total power generated is the sum of the power from each reactor type, 
 such as light water reactors (LWR) and fast reactors (FR). These attributes 
 are common to the overwhelming majority of fuel cycle metrics and so FOMs
@@ -111,8 +112,9 @@ that models the relationship between independent and dependent parameters
 by fitting the covariance to a nominal functional form, or kernel.
 The kernel may have as many or as few fit parameters (also called 
 \emph{hyperparameters}) as desired. One often used kernel is the squared 
-exponential, or Gaussian distribution. Linear kernels and Gaussian
-noise kernels are also frequently used alternatives. 
+exponential, or Gaussian distribution \cite{rasmussen2006gaussian,hodlr}. 
+Linear kernels and Gaussian noise kernels are also frequently used 
+alternatives (see \cite{rasmussen2006gaussian,hodlr} again). 
 
 Using a Gaussian process is desirable because the model can be generated
 from as many simulators as available and it will treat the results of
