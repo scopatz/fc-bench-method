@@ -54,10 +54,14 @@ Some dynamic FOMs do exist, such as aggregating of the high- and low-level
 waste generation per year metrics seen in the recent 
 ``Nuclear Fuel Cycle Evaluation and Screening - Final Report'' 
 \cite{wigeland2014nuclear}. However, these typically require that the metric
-data be too well-behaved for generic comparison purposes. Consider the case 
-of total power produced [GWe]. A FOM could be the sum over time of the relative error 
-between the total power of a single simulator and the root-mean squared total power
-of all the simulators together. However, such an FOM fails if the total power
+data be too well-behaved for generic comparison purposes. Consider  
+total power produced [GWe] as the metric and a FOM for this metric as 
+the sum over time of the relative error 
+between the total power of a single simulator and the root-mean squared 
+total power of all the simulators together. This FOM has been suggested as
+a candiate for the upcoming ``Open Fuel Cycle Benchmark'' 
+\cite{mouginot2015ofcb}. However, such an FOM cannot be calculated 
+if the total power
 time series have different lengths. Such differences could arise because 
 of different time steps (1 month versus 1 year) or because of different 
 simulation durations. Furthermore, suppose that a benchmark is posed as 
