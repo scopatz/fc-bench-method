@@ -26,22 +26,24 @@ Define a \emph{non-judgemental method} as one such that the
 results of any given simulator is evaluated in reference to how 
 it performs against other simulators in such a way that acknowledges that 
 any and all simulators may demonstrate incorrect behavior. No simulator
-by fiat produces the `true' or reference answer.
+by fiat produces the `true' or reference answer because all simulators 
+cannot be validated.
 
 The other major conceptual issue with fuel cycle benchmarking is that there 
-is no agreed upon mechanism for establishing a figure-of-merit for 
+is no agreed upon mechanism for establishing a figure-of-merit
 that is uniform across all fuel cycle metrics of interest. For example, 
 repository heat load may be examined only at the end of the of the simulation,
 separated plutonium may be used as a FOM wherever it peaks, and natural uranium 
 mined might be of concern only after 100 years from the start of the 
-simulation. Comparing at a specific point 
+simulation if resource scarcity is anticipated. Comparing at a specific point 
 in time fails to take into account the behavior of that metric over time and 
-can skew decision making. Additionally, the 
-time of comparison varies based on the metric itself. This is a necessary 
+can skew decision making. Additionally, the appropriate 
+time of comparison depends on the metric itself, and is thus not necessially 
+the same appropriate time for another metric. This is a necessary 
 side effect of picking a single point in time.
 Furthermore, such FOMs are not useful for indicating why simulations differ, 
 only that they do. Moreover, if such FOMs match, this does not indicate
-that the simulators actually agree. Their behavior 
+that the simulators actually agree; their behavior 
 could be radically different at every other simulation time and converge
 only where the metric is evaluated.  The one caveat 
 here is that 
