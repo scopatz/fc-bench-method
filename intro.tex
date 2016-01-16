@@ -119,16 +119,17 @@ alternatives (see \cite{rasmussen2006gaussian,hodlr} again).
 Using a Gaussian process is desirable because the model can be generated
 from as many simulators as available and it will treat the results of
 each simulators in the same manner. Unlike a relative error analysis, no 
-simulator needs to be taken as the fiducial case. The Gaussian process model 
+simulator needs to be taken as the fiducial case; the Gaussian process model 
 itself becomes the target to compare against. 
-Moreover, the covariances do not need to be known to perform the benchmark.
-They are estimated by the Gaussian process. Furthermore, once the 
+Moreover, the covariances do not need to be known to perform the benchmark
+since they are estimated by the Gaussian process. Furthermore, once the 
 hyperparameters are known, this can be used as a representative model for 
 any desired time grid. Additionally, the incorporation of the uncertainties
 in a Gaussian process are known to be more accurate (closer means) than 
 assuming uncorrelated uncertainties.  The trade off is that the 
 model is less precise (higher standard deviations) than the uncorrelated 
-case \cite{hodlr}. Such a trade off is likely desirable because no simulator 
+case \cite{rasmussen1996evaluation,ko2009gp}. Such a trade off is likely 
+desirable because no simulator 
 is necessarily more correct than any other simulator. For example, 
 in an inter-code comparison, an outlier simulator may be the 
 most correct, perhaps because it is higher fidelity than the others. Thus it
