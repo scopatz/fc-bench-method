@@ -15,6 +15,7 @@ def difftex(old):
         diffname = '{0}-diff{1}'.format(fbase, fext)
         git show @(oldspec) > @(oldname)
         latexdiff --subtype=COLOR @(oldname) @(f) > @(diffname)
+        #latexdiff @(oldname) @(f) > @(diffname)
 
 
 def main(args=None):
