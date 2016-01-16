@@ -24,8 +24,8 @@ def difftex(old):
         oldname = '/tmp/{0}-{1}{2}'.format(fbase, old, fext)
         diffname = '{0}-diff{1}'.format(fbase, fext)
         git show @(oldspec) > @(oldname)
-        latexdiff --type=CFONT --subtype=COLOR @(oldname) @(f) > @(diffname)
-        #latexdiff @(oldname) @(f) > @(diffname)
+        #latexdiff --type=CFONT --subtype=COLOR @(oldname) @(f) > @(diffname)
+        latexdiff @(oldname) @(f) > @(diffname)
         replace_inputs(diffname, files)
 
 
