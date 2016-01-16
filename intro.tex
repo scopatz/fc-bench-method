@@ -151,14 +151,18 @@ Dynamic time warping computes the minimal distance and path that it would
 take to convert one time series curve into another. This procedure is highly 
 leveraged in audio processing systems, and especially in speech recognition
 \cite{myers1980performance,muda2010voice}.
-This is because the two time series that are being compared need not have
-the same time basis.  It does not matter if one time series is longer than 
+This is due to the DTW advantage that the two time series that are being 
+compared need not have the same time grid. In other words, it does not matter 
+if one time series is longer than 
 the other or if they have different sampling frequencies. The DTW distance
-instead compares the shape the curves themselves. 
+instead compares the shape of the curves themselves. This is beneficial as
+a FOM derived from the DTW distance can thus represent the structural 
+similarity of the underlying time series.
+ 
 
 There is nothing about the dynamic time warping algorithm that is specific 
-to speech recognition. The method
-may be used in any time series analysis. For nuclear fuel cycle benchmarking,
+to speech recognition and the method
+may be used for any time series analysis. For nuclear fuel cycle benchmarking,
 the DTW distance can be used to compare the metric from each simulator to its
 Gaussian process model. Using this as an FOM has the advantage of 
 incorporating information from the whole time series, rather than just a 
@@ -167,19 +171,21 @@ specific point in the cycle.
 Many benchmarking studies also wish to create a rank ordering of parameter
 importance over all simulators. Examples of such benchmark questions include, 
 ``In a transition scenario,
-which reactor is most important to the total generated power?'' and ``Which
+which reactor contributes the most to the total generated power?'' and 
+``Which
 nuclides are most important to the repository heat load?'' DTW distances 
 of Gaussian process models of the constient parameters (e.g. the power from
 each reactor type) to a Gaussian process model of the total (e.g. total 
 generated power) can be used as a FOM itself or to derive other FOMs. 
-This paper proposes a novel contribution metric. 
-Contribution is taken to be a normalized version of the DTW 
+This paper proposes a novel contribution metric
+that is taken to be a normalized version of the DTW 
 distance for such rank ordering activities.
 
 The remainder of this paper takes a narrative approach that walks through 
-a ficticious example benchmarking activity. Generated power [GWe] data 
+a ficticious example benchmarking activity. Example generated power data 
+(in gigawatts electric [GWe]) 
 from DYMOND \cite{yacout2005modeling,feng2015dymond} and Cyclus 
-\cite{DBLP:journals/corr/HuffGCFMOSSW15,cyclus_v1_0} is used throughout. 
+\cite{DBLP:journals/corr/HuffGCFMOSSW15,cyclus_v1_0} are used. 
 The underlying fuel cycle being modeled is an
 LWR to FR transition scenario that occurs over 200 years, starting from 2010.  
 This data should be regarded as for demonstration purposes only. No deep
