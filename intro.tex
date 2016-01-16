@@ -71,20 +71,29 @@ time-to-transition if they nominally would calculate distinct transition
 times. Therefore, a robust FOM should not impose the constraint of a uniform time grid.
  
 The mechanisms used for benchmarking that have been discussed so far typically
-do not incorporate modeling uncertainty coming from the simulator itself.
-This is likely because most simulators do not compute uncertainty directly. 
+incorporate neither uncertainity in the input parameters nor 
+modeling uncertainty from the simulator.
+This is likely because most simulators do not compute uncertainty from their
+inputs nor do they report uncertainies associated with the algorithms that 
+they implement. 
 Instead they rely on perturbation studies or stochastic wrappers around 
-the simulator. Furthermore, metrics may add their own uncertainty from the 
-data that they bring in (half-lives, cross-sections, etc.). 
+the simulator. Furthermore, many metrics may rely on external nuclear 
+data (such as half-lives and cross-sections), which have cooresponding 
+uncertainties that should effect benchmarking comparisons. 
 However, even if such error bars were available for
 every point in a time series metric, the traditional benchmark FOM 
-calculations would ignore them.
+calculations would ignore them. The simple aggregation of metrics from 
+\cite{wigeland2014nuclear} does not produce uncertainty on the resultant
+total and neither does the root-mean squared difference fom 
+\cite{mouginot2015ofcb}. Only the nominal value is used in these situations.
 
-The method described in this paper addresses all of the above issues. It 
-creates FOMs that a dynamic fuel cycle benchmark will be able to use on any 
-metrics of interest. Before going further, it is important to note that 
+The purpose of this paper is to describe a methodology that generates FOMs
+for all potential fuel cycle metrics in the same way such that the FOMs 
+incorporate any provided uncertainity. 
+Before going further, it is important to note that 
 most fuel cycle 
-metrics are time series and can be derived from the mass balances. 
+metrics are time series and can be derived from the mass balances (or 
+mass flows) \cite{wilson2011comparing,guerin2009benchmark,piet2011assessment,wigeland2014nuclear}. 
 Additionally, many metrics have an associated total metric that can be 
 computed from the linear combination of all of its constituent features. 
 For example, total mass flows are the sum of the mass flow of each nuclide
