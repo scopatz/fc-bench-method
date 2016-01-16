@@ -126,19 +126,26 @@ since they are estimated by the Gaussian process. Furthermore, once the
 hyperparameters are known, this can be used as a representative model for 
 any desired time grid. Additionally, the incorporation of the uncertainties
 in a Gaussian process are known to be more accurate (closer means) than 
-assuming uncorrelated uncertainties.  The trade off is that the 
-model is less precise (higher standard deviations) than the uncorrelated 
-case \cite{rasmussen1996evaluation,ko2009gp}. Such a trade off is likely 
+assuming uncorrelated uncertainties \cite{rasmussen1996evaluation,ko2009gp}.
+The trade off is that the model is less precise (higher standard deviations) 
+than the uncorrelated case \cite{hodlr}. Such a trade off is likely 
 desirable because no simulator 
-is necessarily more correct than any other simulator. For example, 
+is necessarily more valid than any other simulator. For example, 
 in an inter-code comparison, an outlier simulator may be the 
-most correct, perhaps because it is higher fidelity than the others. Thus it
-becomes important to quantify outliers rather than discard them.
+closest to the true solution, perhaps because it is higher fidelity than 
+the others. Thus it becomes important to quantify outliers rather than 
+discard them.
 
 However, a Gaussian process model of a metric for a set of simulators 
-does not directly present itself as a FOM for that metric. Time series go 
-into a Gaussian process and time series come out. The dynamic time warping 
-technique is proposed as a method for deriving FOMs from the models.  
+does not directly present itself as a FOM for that metric. Time series from 
+all simulators go into a Gaussian process and a representative model time 
+series comes out. The Gaussian process handles making the benchmark
+non-judgemental and incorporating uncertainties. However, Gaussian processes 
+do not 
+perform a reduction in dimentionality from time series into to a simple 
+scalar. The dynamic time warping 
+technique is proposed as a method for deriving FOMs from the models that 
+does reduce the dimensionality to an easily comparable single number.
 
 Dynamic time warping computes the minimal distance and path that it would 
 take to convert one time series curve into another. This procedure is highly 
