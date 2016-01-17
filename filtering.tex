@@ -78,19 +78,21 @@ extremely common method employed in speech recognition systems
 \caption{Representative Mel-frequency cepstral coefficients (solid lines) of 
 an LWR Gaussian process model $m_*^\LWR$ alongside the model itself (dashed 
 line). The first seven coefficients are labeled in order of decreasing 
-signifigance.}
+signifigance.  The remaining, least-significant coefficients are visible
+near the time axis.}
 \label{mfcc-lwr-model}
 \end{figure}
 
 Figure \ref{mfcc-lwr-model} displays the MFCC curves of the LWR Gaussian 
 process model as well as the model itself. None of these curves, not even the 
-major coefficient (MFCC 0), resembles the actual model.  Rather, the cosine basis for MFCCs
-is clearly visible.  As with the low-pass filter, the MFCCs also have 
+major coefficient (MFCC 0), resembles the actual model.
+As with the low-pass filter, the MFCCs also have 
 uncharacteristic negative components.  Moreover, 
 the metric data is not sampled frequently enough to have meaningful
 time windows. For the fuel cycle metrics here, there is only one data point per year 
 and the signal itself may change in a meaningful way each year. By comparison, 
-in speech recognition, audio is sampled at least at 22050 Hz for characteristic 
+in speech recognition, audio is sampled on the order of 22050 Hz 
+\cite{EBUTECH3285,juang1991hidden} for characteristic 
 signals on the order of 1 second.  The data volume for fuel cycle benchmark metrics
 is simply too low for MFCC transformations to capture the desired features. 
 
