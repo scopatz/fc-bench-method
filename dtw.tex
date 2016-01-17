@@ -33,7 +33,7 @@ The second application of dynamic time warping to benchmarking is to compare
 the constituent 
 feature models to the total model.  Distances computed in this manner allow 
 for a rank ordering of the components.  This enables the benchmark to make claims
-about which features drive the fuel cycle metric most strongly, over the whole 
+about which features drive the fuel cycle metric most strongly over the whole 
 simulation time domain and for all simulators. Traditionally, the simulators have 
 to agree
 within nominal error bounds ($<5\%$) for a benchmark to make such a claim.  Here,
@@ -76,7 +76,7 @@ scale of the cost matrix is geometrically larger than the metric itself. This is
 due to the compounding nature of the recursive definition of $C$.
 
 Given $C$, the warp path is thus a sequence of coordinate points that can then be 
-computed by walking backwards through the matrix from $(A, B)$ to $(1, 1)$.
+computed by traversing backwards through the matrix from $(A, B)$ to $(1, 1)$.
 For a point $w_p$ in the warp path, the previous point $w_{p-1}$ is given by 
 where the cost is minimized among the locations one column over $(a,b-1)$, 
 one row over $(a-1,b)$, and one previous diagonal element to $(a-1,b-1)$. 
@@ -97,7 +97,13 @@ stated succinctly as:
 d = \frac{C_{A,B}}{A + B}
 \end{equation}
 That is, $d$ is the final value of the cost matrix divided by the maximal length 
-of the warp path.
+of the warp path. When $d$ is zero, this indicates that the two time series
+are excatly the same. Thus small, positive values of $d$ suggest that the 
+time series are similar to one another while larger values denote that they 
+are distinct. The magnitude of large and small is dependent on the range of 
+the time series. A simple definition of large is the maximum 
+value of either of the time series times the length of the time series, 
+while small is a representative fraction of this (e.g. 1\%).
 
 For all practical purposes in nuclear fuel cycle benchmarking, $A$ and $B$ can be 
 forced to have the same
