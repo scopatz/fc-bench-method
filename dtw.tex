@@ -153,8 +153,8 @@ remain valid.
 \caption{Distances [GWe] between models and simulators for all combinations of 
 simulators (DYMOND and Cyclus) and metric features (generated power for 
 LWRs, FRs, and in total). The simulators are presented in the rows and the
-features are given as columns. Distances may only be compared along 
-each column.}
+features are given as columns. Distances, as computed by 
+Equation \ref{d-calc}, may only be compared along each column.}
 \label{d-compare}
 \begin{tabular}{l||c||c||c|}
                 & \textbf{LWR} & \textbf{FR} & \textbf{Total} \\
@@ -195,13 +195,25 @@ mass flows and generated power both follow this rule. Metrics that are
 linear transformations of these basic metrics (such as decay heat or 
 radiotoxicity) will also conform to this constraint. The distances computed here
 can then be used to rank order the importance of each constituent feature. 
-Smaller distances are closer to the total and thus more important.
+Smaller distances are closer to the total and thus have a greater impact.
 
 In the sample data here, the total generated power model can be compared to 
 the models for LWR and FR generated power. The value of 
 $d(m_*^\Total, m_*^\LWR) = 97.010$ while $d(m_*^\Total, m_*^\FR) = 19.503$.
-As expected, the FRs are a more important driver of the transition system 
-than the LWRs over the time domain examined. Figures 
+These two values represent a comparsion of a partition of a total metric, 
+as described above.  Furthermore, since this is a comparison of models and not
+of simulators, this comparison is non-judgemental with resepect to the 
+simulators that comprise the models. Therefore, the any claims about the
+impact of different constiteunts of the partition (LWRs vs FRs) is more general
+than if the impact had been measured only with a single smulator.
+As expected, because this is a 1\% growth scenario, the FRs are a more 
+important driver of the transition system (lower $d$ value) than the 
+LWRs (higher $d$ value) over the time domain examined. Alternatively, if this
+were a decrease scenario (i.e. negative growth)
+that retained transition, it is not clear whether LWRs or FRs would 
+provide a greater impact to the total power generated. The method detailed
+here, though, grants a mechanism for comparing models in all potential 
+scenarios. Figures 
 \ref{cost-total-model-to-lwr-model} \& \ref{cost-total-model-to-fr-model}
 show the cost matrices and warp paths for these two cases.  Notice that in the
 FR case, the warp path is effectively flat until the FRs are deployed in 
