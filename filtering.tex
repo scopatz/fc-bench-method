@@ -4,10 +4,13 @@
 
 It is tempting to insert standard filtering techniques from signal processing 
 after creating a Gaussian process model but prior to any dynamic time warping 
-calculations. A fast Fourier transform (FFT) based low-pass filter 
+calculations. The temptation comes from the fact that DTW is a signal 
+processing technique and so, hypothetically, using other well-known algorithms
+before DTW would clean the signal and result in a smoother DTW comparison.
+A fast Fourier transform (FFT) based low-pass filter 
 \cite{merletti1999standards,moreland2003fft} or 
-Mel-frequency cepstral coefficients (MFCC) \cite{muda2010voice,imai1983cepstral} could be used to reduce error 
-in the model itself, 
+Mel-frequency cepstral coefficients (MFCC) \cite{muda2010voice,imai1983cepstral} 
+could potentially be used to reduce error in the model itself, 
 and thus make the contribution FOM more precise. Unfortunately, most 
 fuel cycle metrics are not well-formed candidates for such filtering strategies.
 Including such filters as part of the analysis can easily lead to wildly unphysical
@@ -15,8 +18,14 @@ models.
 
 Consider a simple low-pass filter where a 256 channel real-valued FFT frequency 
 transform is taken.  All but lowest 32 channels are discarded prior to the applying 
-the inverse transform. High frequency jitter in the original signal is removed, 
-allowing for a better signal-to-noise ratio.
+the inverse transform. This algorithm removes the
+high frequency jitter in the original signal, and 
+potentially allows for a better signal-to-noise ratio. Different values
+for the number of total channels and the number of channels kept could be 
+used to create alternative low-pass filters. These values represent the 
+resolution of the transformation to and from the frequency domain. Keeping
+only the coarsest eigth of the total number of channels should retain only
+the general trends from the orginal time series.
 
 \begin{figure}[htb]
 \centering
