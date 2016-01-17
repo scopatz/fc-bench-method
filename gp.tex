@@ -50,8 +50,8 @@ Now, define a matrix $\K$ such that the element at the $t$-th row and $t^\prime$
 column is given by Equation \ref{exp2-kernel}. If a vector of training metric 
 values $\mathbf{m}$ is defined by concatenating metrics $m_s^i(t)$ for all 
 simulators
-for all times $T$, then log likelihood of the obtaining $\mathbf{m}$ 
-is seen to be:
+for all times $T$, then the logarithm of the likelihood of the obtaining 
+$\mathbf{m}$ is seen to be:
 \begin{equation}
 \label{log-p}
 \log p(\mathbf{m}|T) = -\frac{1}{2}\mathbf{m}^\top\left(\K + u^2\I\right)^{-1}\mathbf{m}
@@ -76,7 +76,12 @@ model of the metric function on the $\mathbf{t_*}$ time grid is thus seen to be:
 A full derivation of Equations \ref{mean-func}-\ref{metric-model} can be found in 
 \cite{rasmussen2006gaussian}. This resource also contains detailed discussions of 
 how to optimize the hyperparameters, efficiently invert the covariance 
-matrix, and compute the model values. 
+matrix, and compute the model values. Often the model will be evaluated at 
+a point on the original time grids. However, the model may also be used in an
+interpolative fashion for points that do not lie on either of the original
+time series but still within the overall time domain. The model is also capable
+of being used in a preditive fashion to extrapolate out to compute points in 
+the future or past of all time series that comprise the model.
 
 In practice, though, a number of free and open source implementations of Gaussian 
 process regression are readily available. In the Scientific Python ecosystem, both 
