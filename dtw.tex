@@ -103,7 +103,7 @@ time series are similar to one another while larger values denote that they
 are distinct. The magnitude of large and small is dependent on the range of 
 the time series. A simple definition of large is the maximum 
 value of either of the time series times the length of the time series, 
-while small is a representative fraction of this (e.g. 1\%).
+while small is a representative fraction of this (e.g. 1\%, 5\%, or similiar).
 
 For all practical purposes in nuclear fuel cycle benchmarking, $A$ and $B$ can be 
 forced to have the same
@@ -128,10 +128,13 @@ as a heat map for the DTW between the LWR Gaussian process model
 $m_*^\LWR(t)$ and the original Cyclus LWR time series $m_\CYCLUS^\LWR(t)$.
 Additionally, the warp path between these two is shown as the white curve
 on top of the heat map. Note that while $w$ is monotonic along both time axes, the
-path it takes minimizes the cost matrix at every step. Higher cost regions
+path it takes minimizes the cost matrix at every step. Higher cost regions,
+seen as the brighter and more yellow or green areas in Figure \ref{cost-lwr-model-to-lwr-cyclus},
 have the effect of pushing the warp path along one axis or another. The 
 distance between these two curves $d(m_*^\LWR, m_\CYCLUS^\LWR)$ is computed 
-to be 1.053 GWe.
+to be 1.053 GWe. For scale, the maximum of the cost matrix divided by the 
+maximum path length, or $\max[C]/(A+B)$, in this case is 34.86 GWe.  This 
+indicated that that Cyclus LWR time series matches the model to within 3\%.
 
 The process of dynamic time warping model generated data to raw simulator data can be 
 repeated for all combinations of simulators and features. The 
@@ -166,7 +169,7 @@ each column.}
 Table \ref{d-compare} gives the distances for all simulator and feature 
 combinations in the sample data presented in \S\ref{setup}. Only the differences between DYMOND and 
 Cyclus for the same feature may be directly compared.  However, Table \ref{d-compare} 
-does indicate that the DYMOND is closer to the model since both the FR and Total
+does indicate that the DYMOND is closer to the model since both the FR and total
 generated power distances are closer for DYMOND than for Cyclus.  As many
 simulators as desired could be added to the benchmark and distances could 
 be tallied for them as well. At a sufficient number of simulators, usual 
