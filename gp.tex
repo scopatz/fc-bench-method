@@ -7,7 +7,11 @@ hand. For nuclear fuel cycle benchmark analysis, Gaussian processes will be used
 to form a model of the metric time series over all $S$ simulators. 
 
 A Gaussian process is defined by mean and covariance functions. 
-The mean function $\mu(t)$ is taken to be the expectation value $\E$ of 
+In general, these functions may be parameterized by many independent and 
+many dependent variables.  However, for purpose of this paper, a single 
+independent parameter, time, is sufficient to demonstrate the method without 
+loss of generality.  
+Here, the mean function $\mu(t)$ is taken to be the expectation value $\E$ of 
 the input functions, which here are the time series for all simulators. The
 covariance function $k(t, t^\prime)$ is the expected value of the input 
 functions to the mean. Symbolically, 

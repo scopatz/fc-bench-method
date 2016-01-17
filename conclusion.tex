@@ -18,10 +18,15 @@ more similar curves.
 
 Any regression method could have been used to form a model. Similarly, any
 mechanism for comparing two time series could have been used as a measure
-of distance.  However, Gaussian processes and DTW were chosen because of 
-the nature of a benchmarks and inter-code comparisons that lack experimental
-validation. It is not possible to build out a given fuel cycle scenario
-and see how it performs 200 years in the future. Furthermore, using 
+of distance.  However, Gaussian processes and DTW were chosen because
+fuel cycle simulator, and thus benchmarks and inter-code comparisons, lack 
+the ability to be experimentally validated.
+It is not possible to build out fully specifcy a fuel cycle scenario,
+physically contruct the initial conditions by building actual facilities, 
+and then record how the cycle performs at a future date. 
+Going through this process for many scenrios and initial conditions that 
+a benchmark may examine is likewise impossible in practice.
+Furthermore, using 
 historical data for validation provides too few cases for comparison and 
 each simulator could simply be tuned to precisely match historical events.
 Thus, each simulator in a benchmark could be valid or they all could be 
@@ -35,35 +40,49 @@ The sample benchmark presented here was very simple and was used for motivation
 purposes only. It consisted of just
 two simulators (DYMOND and Cyclus) and one metric (generated power) with
 two components (LWR and FR).  However, both Gaussian processes and DTW
-are inherently multivariate. More complex forms of analysis could therefore
-be performed. For example, the Gaussian process could jointly model the 
+are inherently multivariate. In this paper, a univariate formulation of 
+Gaussian processes was all that was needed to demonstrtate the method, and 
+the $L_1$ norm of DTW can operate on vectors of time series as was seen 
+in the dicsussion of MFCCs. Therefore, more complex forms of analysis could 
+be performed without modifying the fundemental method. For example, the Gaussian process could jointly model the 
 effect from many inputs onto the metric. Perhaps the benchmark is formulated
 to look at the generated power as a function of time and the power demand curve.
 In this case, a two dimensional GP model would be used. Alternatively, 
 suppose that a matrix time series of the all individual nuclide mass flows 
 are available. DTW is still able compute the distance between two 
 such matrices. This would yield a measure of how the mass flows themselves
-differ - taking into account each nuclide component - without rely on a collapsed
-one dimensional total mass flow curve.  Such cases will be considered in
+differ - taking into account each nuclide component - without relying on a 
+collapsed one dimensional total mass flow curve. 
+This is valuable as a FOM because it provides a measure of the whole fuel
+cycle as a function of each facility, each nuclide, and time 
+without needing to explicitly examine the time series for each facility 
+and each nulcide.
+Such cases will be considered in
 future work as real inter-code comparison data becomes available.
 
-Furthermore, this work focused on the particular use case of benchmarking.
+Furthermore, this work focused only on benchmarking and inter-code comparison
+activities.
 However, the FOM calculations presented here could also be used to evaluate 
 different fuel cycle scenarios. DTW distances could be computed between
-a business-as-usual once through scenario and an LWR-to-FR transition
+a typical once-through scenario and an LWR-to-FR transition
 scenario, or any other proposed scenario. This provides a measure for 
 comparing the relative cost (in units of the metric, not necessarily 
-economic) for selecting one cycle over another. The work here, thus, 
+economic) for selecting one cycle over another. 
+Such measures have the advanatage of being unbiased with respect to the 
+simulators that comprise the evaluation study; no reference or best-performing
+simulator needs to be chosen. 
+Additionally, because DTW may handle different length time series, 
+transition scenarios that complete transition at different times can be 
+compared directly without the need to run all scenarios out to the time of 
+the longest transition.
+Furthermore for FOMs that seek to encompass all fuel cycle facilities,
+the meausures themselves may need to employ zero-valued `ghost' 
+facilities to establish a common basis between scenarios.  For example, 
+imaginary FRs with zero material flowing through them may need to be added 
+to a once-through scenario to be able to compute a DTW mass balance distance 
+to an LWR-to-FR transition scenario. That is, for fuel cycle evaluation,
+it is expected that the union of all types of facilities across all scenarios 
+will be required.
+The work here, thus, 
 should be seen as a stepping stone to further fuel cycle scenario evaluation
-work.
-
-Lastly, dynamic time warping could itself serve a purpose as the objective 
-function in a fuel cycle optimization.  For example, suppose a power demand curve 
-such as 1\% power growth is known. The DTW distance from the total generated
-power to this curve could be minimized as a function of the reactor 
-deployment schedule. Such a distance could potentially yield a more 
-precise or faster optimization process than simply taking the sum of 
-the differences between two time series. Such an optimization would also allow
-for matching on multiple time series features simultaneously while retaining
-a real-valued objective function.
-
+efforts.
