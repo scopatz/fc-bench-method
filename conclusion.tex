@@ -9,7 +9,12 @@ of handling the situation where different simulators output metric data on
 vastly different time grids. The distance computed by the dynamic time 
 warping can itself serve as the figure-of-merit. Additionally, the 
 distance can also be used to derive contribution and normalized contribution
-figures-of-merit.
+figures-of-merit. These measures are valuable for non-judgementally 
+determining the impact of different constiuent measures to a total 
+metric, e.g. LWR versus FR power generation. The contribution metrics also 
+scale such that higher values imply higher impact. This is sometimes
+more intuitve as compared to a DTW distance, where lower values imply
+more similar curves.
 
 Any regression method could have been used to form a model. Similarly, any
 mechanism for comparing two time series could have been used as a measure
