@@ -30,7 +30,7 @@ Additionally, call $u_s^i(t)$ the uncertainty of the metric
 $m_s^i(t)$. Note that $u$ is also a time series for each simulation for 
 each component. If uncertainties are not known, this can be set to floating
 point precision (which states that the metric is as precise as possible) or
-some nominal fraction of the value (10\%, 20\%, etc). It is, of course, 
+some nominal fraction of the value (10\%, 20\%, etc.). It is, of course, 
 much preferred for the simulator to compute 
 uncertainties directly. However, this is often not supported in the underlying
 simulator. Choosing a nominal uncertainty, even if it is floating point 
@@ -47,9 +47,9 @@ Cyclus simulators for both LWRs and FRs.}
 
 The demonstration here will use the generated power from LWRs and FRs in 
 a transition that covers 200 years. The simulation should start with
-90 GWe generated solely by LWRs and meet a 1\% growth in demand over the 
+90 GWe generated solely by LWRs and meet a 1\% annual growth in demand over the 
 lifetime of the simulation. Figure \ref{gwe-simulators} shows the component time 
-series curves for both DYMOND and Cyclus.  From here, the benchmarking 
-analysis may proceed.
+series curves for both DYMOND and Cyclus. The next section describes how to
+construct Gaussian process models from this data set.
 
 \clearpage
