@@ -154,10 +154,10 @@ models. It is thus considered safer
 to sum over the features for each simulator individually before applying the 
 regression.
 
-Thus far the metric data has had effectively zero uncertainty.  But one of the 
-desirable features of the Gaussian process regression is that it accounts for 
-meaningful uncertainties. As a thought experiment, suppose that the time 
-series data was much sparser and that 
+Thus far the metric data has had effectively zero uncertainty, but one of the 
+desirable features of the Gaussian process regression is that it may accounts 
+for meaningful uncertainties. As a thought experiment, suppose that the time 
+series data happened to be much sparser and that 
 the uncertainty associated with each value started off at zero and then grew at 
 a rate of 1\% per decade. A model of the total generated power with this uncertainty 
 is shown in Figure \ref{gwe-model-total-with-uncertainty}.
@@ -165,7 +165,7 @@ is shown in Figure \ref{gwe-model-total-with-uncertainty}.
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.9\textwidth]{gwe-model-total-with-uncertainty.eps}
-\caption{The Gaussian process model of the total generated power [GWe] 
+\caption{The Gaussian process model of the total generated power
 as a function of time. The training set data is relatively sparse and its uncertainty
 has a 1\% per decade growth rate. The model curve is evaluated at every year. The 
 gray envelope represents two standard deviations from the model, as computed by 
