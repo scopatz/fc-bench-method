@@ -41,8 +41,13 @@ $m_*^\LWR(t)$.  The filtered curve demonstrates at least three major problems.  
 first is that the values of the curve are allowed to be negative, which is 
 impossible for this (and many other) fuel cycle metrics.  The second is that 
 near the time boundaries ($t=2010$ and $t=2210$), the amplitude of the filtered model
-is significantly higher than the unfiltered model. At $t=2210$, the metric should be zero but
-instead is 36.5 GWe. Thirdly, the shape of the curve itself is skewed to lower 
+is significantly higher than the unfiltered model. At $t=2210$, the metric 
+should be zero but
+instead is 36.5 GWe. This is because of the oscilations in the filter that 
+begin arounf 2150 and grow in amplitude. These oscilations themseleves 
+come from the fact that the FFT is attempting to model a flat line as a sum
+of only 32 sinusoidal basis functions. 
+Thirdly, the shape of the curve itself is skewed to lower 
 times. The time at which the metric goes to zero should be near year 2150 but is 
 instead closer to year 2115.  All of these issues would severely distort any 
 DTW calculations that follow.
@@ -54,7 +59,11 @@ on an annual basis.
 Thus, while well-intentioned, a low-pass filter is not generally applicable.
 
 Alternatively, MFCCs provide a mechanism for converting a time series into a 
-set of power spectrum coefficient curves. Since the dynamic time warping procedure
+set of power spectrum coefficient curves. In practice, many audio processing
+libraries contain an out-of-the-box MFCC algorithm. For this paper, 
+the MFCC implementation provided by the librosa package v0.4.1
+\cite{mcfee2015librosa} is used.
+Since the dynamic time warping procedure
 uses an L1 norm to form the cost matrix, the MFCCs of two signals can be directly 
 compared. Each coefficient should roughly correspond in shape and amplitude to some
 feature in the original signal.  Noisy, high frequency coefficients tend to be 
@@ -66,14 +75,16 @@ extremely common method employed in speech recognition systems
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.9\textwidth]{mfcc-lwr-model.eps}
-\caption{Representative Mel-frequency cepstral coefficients (solid lines) of an 
-LWR Gaussian process model $m_*^\LWR$ alongside the model itself (dashed line).}
+\caption{Representative Mel-frequency cepstral coefficients (solid lines) of 
+an LWR Gaussian process model $m_*^\LWR$ alongside the model itself (dashed 
+line). The first seven coefficients are labeled in order of decreasing 
+signifigance.}
 \label{mfcc-lwr-model}
 \end{figure}
 
 Figure \ref{mfcc-lwr-model} displays the MFCC curves of the LWR Gaussian 
-process model as well as the model itself. None of these curves, not even the major 
-coefficient, resembles the actual model.  Rather, the cosine basis for MFCCs
+process model as well as the model itself. None of these curves, not even the 
+major coefficient (MFCC 0), resembles the actual model.  Rather, the cosine basis for MFCCs
 is clearly visible.  As with the low-pass filter, the MFCCs also have 
 uncharacteristic negative components.  Moreover, 
 the metric data is not sampled frequently enough to have meaningful
