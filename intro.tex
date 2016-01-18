@@ -22,15 +22,15 @@ once-through fuel cycle scenario has only been deployed a handful of times.
 For other advanced fuel cycles, industrial scale data is even more scarce. 
 Since fuel cycle simulation is thus effectively impossible to validate, 
 non-judgmental methods of benchmarking must be considered. 
-Define a \emph{non-judgemental method} as one such that the 
+Define a \emph{non-judgmental method} as one such that the 
 results of any given simulator is evaluated in reference to how 
 it performs against other simulators in such a way that acknowledges that 
 any and all simulators may demonstrate incorrect behavior. No simulator
 by fiat produces the `true' or reference answer because all simulators 
-cannot be validated. Picking a refence solution biases further analysis 
+cannot be validated. Picking a reference solution biases further analysis 
 towards that solution and, implicitly or explicitly, determines that the
 chosen simulator is the most valid one for purposes of the benchmark. The 
-aim of a non-judmental benchmark is to avoid all such biases.
+aim of a non-judgmental benchmark is to avoid all such biases.
 
 The other major conceptual issue with fuel cycle benchmarking is that there 
 is no agreed upon mechanism for establishing a figure-of-merit
@@ -41,7 +41,7 @@ mined might be of concern only after 100 years from the start of the
 simulation if resource scarcity is anticipated. Comparing at a specific point 
 in time fails to take into account the behavior of that metric over time and 
 can skew decision making. Additionally, the appropriate 
-time of comparison depends on the metric itself, and is thus not necessially 
+time of comparison depends on the metric itself, and is thus not necessarily 
 the same appropriate time for another metric. This is a necessary 
 side effect of picking a single point in time.
 Furthermore, such FOMs are not useful for indicating why simulations differ, 
@@ -62,7 +62,7 @@ total power produced [GWe] as the metric and a FOM for this metric as
 the sum over time of the relative error 
 between the total power of a single simulator and the root-mean squared 
 total power of all the simulators together. This FOM has been suggested as
-a candiate for the upcoming ``Open Fuel Cycle Benchmark'' 
+a candidate for the upcoming ``Open Fuel Cycle Benchmark'' 
 \cite{mouginot2015ofcb}. However, such an FOM cannot be calculated 
 if the total power
 time series have different lengths. Such differences could arise because 
@@ -74,25 +74,25 @@ time-to-transition if they nominally would calculate distinct transition
 times. Therefore, a robust FOM should not impose the constraint of a uniform time grid.
  
 The mechanisms used for benchmarking that have been discussed so far typically
-incorporate neither uncertainity in the input parameters nor 
+incorporate neither uncertainty in the input parameters nor 
 modeling uncertainty from the simulator.
 This is likely because most simulators do not compute uncertainty from their
-inputs nor do they report uncertainies associated with the algorithms that 
+inputs nor do they report uncertainties associated with the algorithms that 
 they implement. 
 Instead they rely on perturbation studies or stochastic wrappers around 
 the simulator. Furthermore, many metrics may rely on external nuclear 
-data (such as half-lives and cross-sections), which have cooresponding 
+data (such as half-lives and cross-sections), which have corresponding 
 uncertainties that should effect benchmarking comparisons. 
 However, even if such error bars were available for
 every point in a time series metric, the traditional benchmark FOM 
 calculations would ignore them. The simple aggregation of metrics from 
 \cite{wigeland2014nuclear} does not produce uncertainty on the resultant
-total and neither does the root-mean squared difference fom 
+total and neither does the root-mean squared difference FOM 
 \cite{mouginot2015ofcb}. Only the nominal value is used in these situations.
 
 The purpose of this paper is to describe a methodology that generates FOMs
 for all potential fuel cycle metrics in the same way such that the FOMs 
-incorporate any provided uncertainity. 
+incorporate any provided uncertainty. 
 Before going further, it is important to note that 
 most fuel cycle 
 metrics are time series and can be derived from the mass balances (or 
@@ -143,9 +143,9 @@ However, a Gaussian process model of a metric for a set of simulators
 does not directly present itself as a FOM for that metric. Time series from 
 all simulators go into a Gaussian process and a representative model time 
 series comes out. The Gaussian process handles making the benchmark
-non-judgemental and incorporating uncertainties. However, Gaussian processes 
+non-judgmental and incorporating uncertainties. However, Gaussian processes 
 do not 
-perform a reduction in dimentionality from time series into to a simple 
+perform a reduction in dimensionality from time series into to a simple 
 scalar. The dynamic time warping 
 technique is proposed as a method for deriving FOMs from the models that 
 does reduce the dimensionality to an easily comparable single number.
@@ -194,12 +194,12 @@ are used for each scenario in an evaluation, an inter-code comparison may
 be a step within the evaluation. The methodology described in this paper
 applies to such a benchmarking step. However, to enable comparisons
 between different scenarios that are the core part of a fuel cycle evaluation,
-this method requires modification. Such additons to the methodology 
+this method requires modification. Such additions to the methodology 
 are not present in this paper, whose focus is benchmarking, but will
 be forthcoming in future work. 
 
 The remainder of this paper takes a narrative approach that walks through 
-a ficticious example benchmarking activity. Example generated power data 
+a fictitious example benchmarking activity. Example generated power data 
 (in gigawatts electric [GWe]) 
 from DYMOND \cite{yacout2005modeling,feng2015dymond} and Cyclus 
 \cite{DBLP:journals/corr/HuffGCFMOSSW15,cyclus_v1_0} are used. 

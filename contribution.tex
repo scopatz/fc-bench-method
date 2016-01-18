@@ -7,7 +7,7 @@ FOM for measuring the similarity between time series, whether they
 were model-to-simulator comparisons or model-to-model comparisons.
 The distances alone, though, have the inverse meaning when trying to 
 compute a FOM for contribution to a fuel cycle.  For example, the 
-question may be posed as, ``Do LWRs or FRs impact the total power generarted 
+question may be posed as, ``Do LWRs or FRs impact the total power generated 
 more over the entire fuel cycle time domain?'' 
 While distances can answer this question, smaller 
 disantances have higher impact. Preferably, a higher FOM score would yield a 
@@ -86,8 +86,8 @@ more pronounced unnormalized contribution.
 The only advantages that $|c^i|$ confers over $c^i$ are that it is defined on 
 the range $[0,1]$ and that $\sum |c^i| = 1$. Otherwise, both versions of the FOM
 have the same properties with respect to having a zero baseline, the 
-intreptation that higher values are higher impact to the total, and that they 
-are non-judgmentally derived from models rather than simultors.
+interpretation that higher values are higher impact to the total, and that they 
+are non-judgmentally derived from models rather than simulators.
 
 \begin{figure}[htb]
 \centering
@@ -116,13 +116,13 @@ normalized contribution respectively for both LWRs and FRs over the full
 time domain. From these figures, the point where FRs become more important 
 than LWRs is seen to be approximately year 2140.
 
-It is worth noting that for all metrics for which the above contibution FOMs
+It is worth noting that for all metrics for which the above contribution FOMs
 are computable, direct integration of the Gaussian process models over 
 the whole time domain can also provide a FOM. This is because 
 contribution requirement that the metric have a linearly combined total 
-implies that the metric is also integratable. A direct integration
+implies that the metric is also integrable. A direct integration
 FOM would thus share the property that higher values indicate higher impact
-to the total. However, the contribution FOMs may still be desriable over 
+to the total. However, the contribution FOMs may still be desirable over 
 integration-based FOMs.  This is because the DTW cost compounds the 
 differences in the time series. As a result, the DTW distance based 
 contributions are relatively more distinct than a model integration 

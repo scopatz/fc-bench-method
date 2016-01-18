@@ -9,11 +9,11 @@ of handling the situation where different simulators output metric data on
 vastly different time grids. The distance computed by the dynamic time 
 warping can itself serve as the figure-of-merit. Additionally, the 
 distance can also be used to derive contribution and normalized contribution
-figures-of-merit. These measures are valuable for non-judgementally 
-determining the impact of different constiuent measures to a total 
+figures-of-merit. These measures are valuable for non-judgmentally 
+determining the impact of different constituent measures to a total 
 metric, e.g. LWR versus FR power generation. The contribution metrics also 
 scale such that higher values imply higher impact. This is sometimes
-more intuitve as compared to a DTW distance, where lower values imply
+more intuitive as compared to a DTW distance, where lower values imply
 more similar curves.
 
 Any regression method could have been used to form a model. Similarly, any
@@ -21,10 +21,10 @@ mechanism for comparing two time series could have been used as a measure
 of distance.  However, Gaussian processes and DTW were chosen because
 fuel cycle simulator, and thus benchmarks and inter-code comparisons, lack 
 the ability to be experimentally validated.
-It is not possible to build out fully specifcy a fuel cycle scenario,
-physically contruct the initial conditions by building actual facilities, 
+It is not possible to build out fully specify a fuel cycle scenario,
+physically construct the initial conditions by building actual facilities, 
 and then record how the cycle performs at a future date. 
-Going through this process for many scenrios and initial conditions that 
+Going through this process for many scenarios and initial conditions that 
 a benchmark may examine is likewise impossible in practice.
 Furthermore, using 
 historical data for validation provides too few cases for comparison and 
@@ -41,10 +41,10 @@ purposes only. It consisted of just
 two simulators (DYMOND and Cyclus) and one metric (generated power) with
 two components (LWR and FR).  However, both Gaussian processes and DTW
 are inherently multivariate. In this paper, a univariate formulation of 
-Gaussian processes was all that was needed to demonstrtate the method, and 
+Gaussian processes was all that was needed to demonstrate the method, and 
 the $L_1$ norm of DTW can operate on vectors of time series as was seen 
-in the dicsussion of MFCCs. Therefore, more complex forms of analysis could 
-be performed without modifying the fundemental method. For example, the Gaussian process could jointly model the 
+in the discussion of MFCCs. Therefore, more complex forms of analysis could 
+be performed without modifying the fundamental method. For example, the Gaussian process could jointly model the 
 effect from many inputs onto the metric. Perhaps the benchmark is formulated
 to look at the generated power as a function of time and the power demand curve.
 In this case, a two dimensional GP model would be used. Alternatively, 
@@ -56,7 +56,7 @@ collapsed one dimensional total mass flow curve.
 This is valuable as a FOM because it provides a measure of the whole fuel
 cycle as a function of each facility, each nuclide, and time 
 without needing to explicitly examine the time series for each facility 
-and each nulcide.
+and each nuclide.
 Such cases will be considered in
 future work as real inter-code comparison data becomes available.
 
@@ -68,7 +68,7 @@ a typical once-through scenario and an LWR-to-FR transition
 scenario, or any other proposed scenario. This provides a measure for 
 comparing the relative cost (in units of the metric, not necessarily 
 economic) for selecting one cycle over another. 
-Such measures have the advanatage of being unbiased with respect to the 
+Such measures have the advantage of being unbiased with respect to the 
 simulators that comprise the evaluation study; no reference or best-performing
 simulator needs to be chosen. 
 Additionally, because DTW may handle different length time series, 
@@ -76,7 +76,7 @@ transition scenarios that complete transition at different times can be
 compared directly without the need to run all scenarios out to the time of 
 the longest transition.
 Furthermore for FOMs that seek to encompass all fuel cycle facilities,
-the meausures themselves may need to employ zero-valued `ghost' 
+the measures themselves may need to employ zero-valued `ghost' 
 facilities to establish a common basis between scenarios.  For example, 
 imaginary FRs with zero material flowing through them may need to be added 
 to a once-through scenario to be able to compute a DTW mass balance distance 
