@@ -62,9 +62,9 @@ Alternatively, MFCCs provide a mechanism for converting a time series into a
 set of power spectrum coefficient curves. In practice, many audio processing
 libraries contain an out-of-the-box MFCC algorithm. For this paper, 
 the MFCC implementation provided by the librosa package v0.4.1
-\cite{mcfee2015librosa} is used.
+\cite{mcfee2015librosa} was used.
 Since the dynamic time warping procedure
-uses an L1 norm to form the cost matrix, the MFCCs of two signals can be directly 
+uses an $L_1$ norm to form the cost matrix, the MFCCs of two signals can be directly 
 compared. Each coefficient should roughly correspond in shape and amplitude to some
 feature in the original signal.  Noisy, high frequency coefficients tend to be 
 very similar and so their contribution to a DTW distance is correspondingly less 
@@ -92,8 +92,8 @@ the metric data is not sampled frequently enough to have meaningful
 time windows. For the fuel cycle metrics here, there is only one data point per year 
 and the signal itself may change in a meaningful way each year. By comparison, 
 in speech recognition, audio is sampled on the order of 22050 Hz 
-\cite{EBUTECH3285,juang1991hidden} for characteristic 
-signals on the order of 1 second.  The data volume for fuel cycle benchmark metrics
+\cite{EBUTECH3285,juang1991hidden}. 
+The data volume for fuel cycle benchmark metrics
 is simply too low for MFCC transformations to capture the desired features. 
 
 Proceeding anyways, suppose the contribution measure is computed for the MFCCs 
@@ -103,7 +103,7 @@ total generated power models.  In this case the LWR contribution is found to be
 in \S\ref{contribution}, the contribution values were 0.298 and 0.859 respectively.
 This implies that using the MFCCs had the opposite effect as desired.  The MFCCs
 added error to the FOM and made the LWR and FR contributions seem more alike 
-than the analysis indicates without such filtering.
+than the analysis without such filtering indicated.
 
 Therefore filtering the models prior to dynamic time warping is a dubious practice
 in the general case. In all likelihood, the metric does not meet the underlying 
