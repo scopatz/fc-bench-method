@@ -134,7 +134,7 @@ have the effect of pushing the warp path along one axis or another. The
 distance between these two curves $d(m_*^\LWR, m_\CYCLUS^\LWR)$ is computed 
 to be 1.053 GWe. To give a sense of scale to this distance, the maximum of 
 the cost matrix divided by the 
-maximum path length, or $\max[C]/(A+B)$, in this case is 34.86 GWe.  This 
+maximum path length, or $\max[C]/(A+B)$, is 34.86 GWe.  This 
 indicates that that Cyclus LWR time series matches the model to within 3\%.
 
 The process of dynamic time warping model generated data to raw simulator data can be 
@@ -152,7 +152,8 @@ remain valid.
 The interpretation of the DTW distances should be, ``How much effort does
 it take to turn one time series into another.'' This effort is measured 
 in the same units as the original time series, but with a compounded
-scale (due to the construction of the cost matix) that is then reduced by 
+scale (due to the construction of the cost matix in Equation \ref{cost-matrix}) 
+that is then reduced by 
 the maximum warp length (by Equation \ref{d-calc}). Thus if the fuel 
 cycle metric has physical units, such as GWe or kg, the distance will have 
 the same physical units. In a heuristic sense, the DTW distance represents
@@ -160,6 +161,8 @@ the minimum amount (in units of the metric) that would have to be transfered
 between the time series for the two curves to be the same. However, it is
 problematic to take this heuristic notion at face value because of the 
 scale differences between the original metric and the DTW distance.
+For the metric and the $d$ values to be directly comparable, the DTW distance
+would need to be decompounded.
 
 \begin{table}[htb]
 \centering
