@@ -27,7 +27,10 @@ results of any given simulator is evaluated in reference to how
 it performs against other simulators in such a way that acknowledges that 
 any and all simulators may demonstrate incorrect behavior. No simulator
 by fiat produces the `true' or reference answer because all simulators 
-cannot be validated.
+cannot be validated. Picking a refence solution biases further analysis 
+towards that solution and, implicitly or explicitly, determines that the
+chosen simulator is the most valid one for purposes of the benchmark. The 
+aim of a non-judmental benchmark is to avoid all such biases.
 
 The other major conceptual issue with fuel cycle benchmarking is that there 
 is no agreed upon mechanism for establishing a figure-of-merit

@@ -49,7 +49,33 @@ The demonstration here will use the generated power from LWRs and FRs in
 a transition that covers 200 years. The simulation should start with
 90 GWe generated solely by LWRs and meet a 1\% annual growth in demand over the 
 lifetime of the simulation. Figure \ref{gwe-simulators} shows the component time 
-series curves for both DYMOND and Cyclus. The next section describes how to
-construct Gaussian process models from this data set.
+series curves for both DYMOND and Cyclus. 
+
+The difference between the LWR curves in Figure \ref{gwe-simulators} stem 
+partially from initial condition. DYMOND uses an ititial condition that 
+begins with a fleet that produces 90 GWe in 2010 and whose reactors are 
+decomissioned on a staggered schedule. The Cyclus simulation, on the other 
+hand, begins the simulation in 1960 and deploys two reactors per year for
+the first fifty years. This yields 100 LWRs in 2010 that have a refueling 
+schedule and capacity factor such that 90 GWe of power is generated. Since
+Cyclus is agent-based, these reactors then decomission themselves naturally
+given their 60 year lifespan. New reactors are subsequently deployed after
+2010.
+
+The difference between the FR curves in Figure \ref{gwe-simulators} come
+from modeling differences in the simulators themselves. DYMOND does not 
+restrict FRs from operating once they are deployed if fresh fuel is not 
+immeadiately available. Cyclus, however, does model fuel shortages and 
+reactors will sit idle until valid fresh fuel becomes availble. Furthermore, 
+in the Cyclus simulation here (i.e. not a limitation of Cyclus itself), 
+all reactors are deployed in January of the year that they are deployed in.
+This leads to the oscilations seen at later times (2135+) because all 
+FRs that begin on the same time step will shut down for their first
+refueling at the same time, all of those that obtain fuel will go down for 
+their second refueling at the same time, and so on. As more FRs are deployed, 
+this effect becomes more pronounced.
+
+The next section describes how to
+construct Gaussian process models from the data set presented above.
 
 \clearpage
