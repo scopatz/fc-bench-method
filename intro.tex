@@ -42,8 +42,8 @@ simulation if resource scarcity is anticipated. Comparing at a specific point
 in time fails to take into account the behavior of that metric over time and 
 can skew decision making. Additionally, the appropriate 
 time of comparison depends on the metric itself, and is thus not necessarily 
-the same appropriate time for another metric. This is a necessary 
-side effect of picking a single point in time.
+the same point in time as for another metric. This is a necessary 
+side effect of picking a single time at which to compute metrics.
 Furthermore, such FOMs are not useful for indicating why simulations differ, 
 only that they do. Moreover, if such FOMs match, this does not indicate
 that the simulators actually agree; their behavior 
@@ -53,15 +53,14 @@ here is that
 equilibrium and quasi-static fuel cycle simulators are sometimes able to 
 ignore these issues because all points in time are treated equally.
 
-Some dynamic FOMs do exist, such as aggregating of the high- and low-level
-waste generation per year metrics seen in the recent 
+Some dynamic FOMs do exist, such as some metrics seen in the recent 
 ``Nuclear Fuel Cycle Evaluation and Screening - Final Report'' 
 \cite{wigeland2014nuclear}. However, these typically require that the metric
 data be too well-behaved for generic comparison purposes. Consider  
 total power produced [GWe] as the metric and a FOM for this metric as 
 the sum over time of the relative error 
-between the total power of a single simulator and the root-mean squared 
-total power of all the simulators together. This FOM has been suggested as
+between the total power of a single simulator and the root-mean squared (RMS)
+total power of all the simulators together. This RMS FOM has been suggested as
 a candidate for the upcoming ``Open Fuel Cycle Benchmark'' 
 \cite{mouginot2015ofcb}. However, such an FOM cannot be calculated 
 if the total power
@@ -85,9 +84,9 @@ data (such as half-lives and cross-sections), which have corresponding
 uncertainties that should effect benchmarking comparisons. 
 However, even if such error bars were available for
 every point in a time series metric, the traditional benchmark FOM 
-calculations would ignore them. The simple aggregation of metrics from 
-\cite{wigeland2014nuclear} does not produce uncertainty on the resultant
-total and neither does the root-mean squared difference FOM 
+calculations would ignore them. Integration over time of the metrics found in
+\cite{wigeland2014nuclear} does not provide an uncertainty for the result,
+and neither does the RMS FOM 
 \cite{mouginot2015ofcb}. Only the nominal value is used in these situations.
 
 The purpose of this paper is to describe a methodology that generates FOMs
@@ -121,7 +120,7 @@ alternatives (see \cite{rasmussen2006gaussian,hodlr} again).
 
 Using a Gaussian process is desirable because the model can be generated
 from as many simulators as available and it will treat the results of
-each simulators in the same manner. Unlike a relative error analysis, no 
+each simulator in the same manner. Unlike a relative error analysis, no 
 simulator needs to be taken as the fiducial case; the Gaussian process model 
 itself becomes the target to compare against. 
 Moreover, the covariances do not need to be known to perform the benchmark
