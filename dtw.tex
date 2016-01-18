@@ -185,7 +185,7 @@ Equation \ref{d-calc}, may only be compared along each column.}
 Table \ref{d-compare} gives the distances for all simulator and feature 
 combinations in the sample data presented in \S\ref{setup}. Only the differences between DYMOND and 
 Cyclus for the same feature may be directly compared.  However, Table \ref{d-compare} 
-does indicate that the DYMOND is closer to the model since both the FR and total
+does indicate that DYMOND is closer to the model since both the FR and total
 generated power distances are closer for DYMOND than for Cyclus.  As many
 simulators as desired could be added to the benchmark and distances could 
 be tallied for them as well. At a sufficient number of simulators, usual 
@@ -232,16 +232,17 @@ of simulators, this comparison is non-judgmental with respect to the
 simulators that comprise the models. Therefore, the any claims about the
 impact of different constituents of the partition (LWRs vs FRs) is more general
 than if the impact had been measured only with a single simulator.
-As expected, because this is a 1\% growth scenario, the FRs are a more 
-important driver of the transition system (lower $d$ value) than the 
+As expected, because this is a 1\% growth scenario, the FRs are a larger
+driver of the transition system (lower $d$ value) than the 
 LWRs (higher $d$ value) over the time domain examined. Alternatively, if this
 were a decrease scenario (i.e. negative growth)
-that retained transition, it is not clear whether LWRs or FRs would 
+that retained transition, it is not clear \emph{a priori} whether LWRs or FRs would 
 provide a greater impact to the total power generated. The method detailed
 here, though, grants a mechanism for comparing models in all potential 
 scenarios. Figures 
 \ref{cost-total-model-to-lwr-model} \& \ref{cost-total-model-to-fr-model}
-show the cost matrices and warp paths for these two cases.  Notice that in the
+show the cost matrices and warp paths for these two model-to-model cases.
+Notice that in the
 FR case, the warp path is effectively flat until the FRs are deployed in 
 significant numbers. 
  
@@ -265,11 +266,11 @@ The warp path is superimposed as the white curve on top of the cost matrix.}
 \label{cost-total-model-to-fr-model}
 \end{figure}
 
-In summary, dynamic time warping yields a meaningful mechanism for benchmarks to 
+In summary, dynamic time warping yields a mechanism for benchmarks to 
 compare various simulators and models. As a tool for
 outlier identification, it allows for each simulator to use its own native 
 time grid. As a tool for performing rank ordering of features, the DTW distances
 are a perfectly functional FOM. However, lower distances implying higher 
-importance may run counter to intuition. The potential for confusion, therefore,
+impact may run counter to intuition. The potential for confusion, therefore,
 makes it less than ideal as a FOM on its own. A remedy for this is presented
 in the next section in form of a new contribution FOM.
