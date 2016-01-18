@@ -7,8 +7,9 @@ FOM for measuring the similarity between time series, whether they
 were model-to-simulator comparisons or model-to-model comparisons.
 The distances alone, though, have the inverse meaning when trying to 
 compute a FOM for contribution to a fuel cycle.  For example, the 
-question may be posed as, ``Are LWRs or FRs more important to the fuel 
-cycle as a whole?'' While distances can answer this question, smaller 
+question may be posed as, ``Do LWRs or FRs impact the total power generarted 
+more over the entire fuel cycle time domain?'' 
+While distances can answer this question, smaller 
 disantances have higher impact. Preferably, a higher FOM score would yield a 
 higher impact. Furthermore, the distances in the previous section have
 the same units as the cost matrix and are similarly bounded. A better 
@@ -114,3 +115,16 @@ Figures \ref{c-of-t} \& \ref{normc-of-t} display the contribution and
 normalized contribution respectively for both LWRs and FRs over the full 
 time domain. From these figures, the point where FRs become more important 
 than LWRs is seen to be approximately year 2140.
+
+It is worth noting that for all metrics for which the above contibution FOMs
+are computable, direct integration of the Gaussian process models over 
+the whole time domain can also provide a FOM. This is because 
+contribution requirement that the metric have a linearly combined total 
+implies that the metric is also integratable. A direct integration
+FOM would thus share the property that higher values indicate higher impact
+to the total. However, the contribution FOMs may still be desriable over 
+integration-based FOMs.  This is because the DTW cost compounds the 
+differences in the time series. As a result, the DTW distance based 
+contributions are relatively more distinct than a model integration 
+contribution. This extra emphasis on diverging contribution values may be 
+desirable as the purpose of a FOM is to highlight differences. 
