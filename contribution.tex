@@ -2,7 +2,7 @@
 \section{Contribution}
 \label{contribution}
 
-In \S\ref{dtw}, the dynamic time warping distance was presented as a 
+In \S\ref{dtw}, the dynamic time warping distance was presented as an
 FOM for measuring the similarity between time series, whether they 
 were model-to-simulator comparisons or model-to-model comparisons.
 The distances alone, though, have the inverse meaning when trying to 
@@ -108,23 +108,26 @@ as a function of time.}
 Both $c^i$ and $|c^i|$ can be viewed as a function of time.
 Doing so in a nuclear fuel cycle benchmark may help identify artifacts in the
 calculation that are the result of the time domain chosen for the benchmark itself.
-For instance, the FR contribution is expected to overtake the LWR contribution
-and this does not occur or occurs very close to the maximum simulation time, 
+For instance, the FR contribution is expected to overtake the LWR contribution.
+If this does not occur or occurs very close to the maximum simulation time, 
 this implies that the time horizon of the benchmark should be increased.
 Figures \ref{c-of-t} \& \ref{normc-of-t} display the contribution and 
 normalized contribution respectively for both LWRs and FRs over the full 
-time domain. From these figures, the point where FRs become more important 
+time domain. From these figures, the point where FRs have a greater impact
+to the total generated power
 than LWRs is seen to be approximately year 2140.
 
 It is worth noting that for all metrics for which the above contribution FOMs
 are computable, direct integration of the Gaussian process models over 
-the whole time domain can also provide a FOM. This is because 
+the whole time domain can also provide an analogous FOM. This is because the
 contribution requirement that the metric have a linearly combined total 
-implies that the metric is also integrable. A direct integration
-FOM would thus share the property that higher values indicate higher impact
+implies that the metric is also numerically integrable. A direct integration
+could be subsituted into Equation \ref{cont} to generate an FOM that also 
+has the property that higher values indicate higher impact
 to the total. However, the contribution FOMs may still be desirable over 
-integration-based FOMs.  This is because the DTW cost compounds the 
+integration based FOMs.  This is because the DTW cost compounds the 
 differences in the time series. As a result, the DTW distance based 
-contributions are relatively more distinct than a model integration 
-contribution. This extra emphasis on diverging contribution values may be 
-desirable as the purpose of a FOM is to highlight differences. 
+contributions are relatively more distinct than would be model integration 
+contributions. This extra emphasis on diverging contribution values may be 
+desirable to an inter-code comparison as the purpose of an FOM is to 
+highlight the differences. 
