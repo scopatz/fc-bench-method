@@ -148,6 +148,18 @@ have different time grids, the model can be evaluated with each time grid
 prior to computing the corresponding DTW distances and the comparison will
 remain valid.
 
+The interpretation of the DTW distances should be, ``How much effort does
+it take to turn one time series into another.'' This effort is measured 
+in the same units as the original time series, but with a compounded
+scale (due to the construction of the cost matix) that is then reduced by 
+the maximum warp length (by Equation \ref{d-calc}). Thus if the fuel 
+cycle metric has physical units, such as GWe or kg, the distance will have 
+the same physical units. In a heuristic sense, the DTW distance represents
+the minmum amount (in units of the metric) that would have to be transfered
+between the time series for the two curves to be the same. However, it is
+problematic to take this heuristic notion at face value because of the 
+scale differences between the original metric and the DTW distance.
+
 \begin{table}[htb]
 \centering
 \caption{Distances [GWe] between models and simulators for all combinations of 
@@ -181,6 +193,16 @@ for demonstration purposes and neither can be said to be an outlier in a
 non-judgmental way. Recall, though, that outliers determined in this way 
 may stem from the more correct simulator. The term outlier is not a 
 condemnation on its own.
+
+Unless all simulators produce precisely the same time series, it is 
+expected that the model will differ, at least in part, from all simulators.
+Thus the DTW distances are usually expected to be non-zero. How significant
+the differences in these distances are can be determined from the mean
+and standard deviations of these disntances.  However, the data presented
+in Table \ref{d-compare} is not sufficient to make any claims with respect
+to such signifigance because only two simulators are available. A benchmark 
+study with many participating simulators would be capable of making more 
+concrete claims in this regard.
 
 The second application of DTW to nuclear fuel cycle benchmarking is as a
 FOM for contribution of constituent features to a total metric. For this application, 
