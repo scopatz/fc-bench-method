@@ -76,4 +76,7 @@ paper.lg
 paper.tmp
 paper.xref
 paper*.png
-fft-lwr-*
+fft-lwr-cyclus.eps
+fft-lwr-cyclus.png
+fft-lwr-dymond.eps
+fft-lwr-dymond.png
