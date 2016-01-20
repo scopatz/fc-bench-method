@@ -13,6 +13,39 @@ def l1(x, y):
     return np.linalg.norm(x - y, ord=1)
 
 
+def dist_matrix(x, y, dist_func=l1):
+    """Computes the DTW cost matrix given two sequences.
+
+    Parameters
+    ----------
+    x : ndarray
+        N1 x M array
+    y : ndarray
+        N2 x M array
+    dist_func : callable, optional
+        Distance function to use in cost evaluation. Default: L1 norm.
+
+    Returns
+    -------
+    dist : N1 x N2 array
+        The accumulated dist matrix.
+    """
+    x = np.atleast_2d(x)
+    n1 = len(x)
+    y = np.atleast_2d(y)
+    n2 = len(y)
+
+    dist = np.empty((n1+1, n2+1), dtype=float)
+    dist[0, 1:] = np.inf
+    dist[1:, 0] = np.inf
+
+    for i in range(n1):
+        for j in range(n2):
+            dist[i+1, j+1] = dist_func(x[i], y[j])
+
+    dist = dist[1:, 1:]
+    return dist
+
 def cost_matrix(x, y, dist_func=l1):
     """Computes the DTW cost matrix given two sequences.
 
@@ -49,7 +82,7 @@ def cost_matrix(x, y, dist_func=l1):
 
     cost = cost[1:, 1:]
     return cost
-
+ 
 
 def distance(x=None, y=None, cost=None, dist_func=l1):
     """Computes the DTW distance given either two sequences or a cost matrix.
@@ -130,9 +163,10 @@ def dtw(x, y, dist_func=l1):
         The warp path.
     """
     cost = cost_matrix(x, y, dist_func=l1)
+    dist = dist_matrix(x, y, dist_func=l1)
     d = distance(cost=cost)
     w = warp_path(cost)
-    return d, cost, w
+    return d, dist, cost, w
 
 
 def distance_matrix(mfccs, callback=None):
