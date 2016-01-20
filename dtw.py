@@ -43,7 +43,6 @@ def dist_matrix(x, y, dist_func=l1):
         for j in range(n2):
             dist[i+1, j+1] = dist_func(x[i], y[j])
 
-    dist = dist[1:, 1:]
     return dist
 
 def cost_matrix(x, y, dist_func=l1):
@@ -68,13 +67,7 @@ def cost_matrix(x, y, dist_func=l1):
     y = np.atleast_2d(y)
     n2 = len(y)
 
-    cost = np.empty((n1+1, n2+1), dtype=float)
-    cost[0, 1:] = np.inf
-    cost[1:, 0] = np.inf
-
-    for i in range(n1):
-        for j in range(n2):
-            cost[i+1, j+1] = dist_func(x[i], y[j])
+    cost = dist_matrix(x, y, dist_func)
 
     for i in range(n1):
         for j in range(n2):
