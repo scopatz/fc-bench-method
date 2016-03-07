@@ -10,14 +10,21 @@ all-via-pdf: $(manuscript).tex $(references).bib
 	pdflatex $(latexopt) $(manuscript)
 	pdflatex $(latexopt) $(manuscript)
 
-all-via-dvi: 
+all-via-dvi:
 	latex $(latexopt) $(manuscript)
 	bibtex $(manuscript).aux
 	latex $(latexopt) $(manuscript)
 	latex $(latexopt) $(manuscript)
 	dvipdf $(manuscript)
 
-epub: 
+raw-via-pdf:
+	pdflatex $(latexopt) $(manuscript)
+
+raw-via-dvi:
+	latex $(latexopt) $(manuscript)
+	dvipdf $(manuscript)
+
+epub:
 	latex $(latexopt) $(manuscript)
 	bibtex $(manuscript).aux
 	mk4ht htlatex $(manuscript).tex 'xhtml,charset=utf-8,pmathml' ' -cunihtf -utf8 -cvalidate'
