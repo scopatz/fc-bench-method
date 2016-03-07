@@ -1,0 +1,123 @@
+\documentclass{ntmanuscript}
+%\usepackage[acronym,toc]{glossaries}
+%\include{acros}
+%\makeglossaries
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Non-judgemental Dynamic Fuel Cycle Benchmarking}
+
+% Authors. Separated by commas
+\author{Anthony Michael Scopatz$^1$}
+
+% Institutes of the authors
+\institute{$^1$University of South Carolina, Department of Mechanical
+    Engineering, Nuclear Engineering Program, Columbia, SC 29201}
+
+% Information concerning the person submitting the manuscript
+\submitter{Anthony M. Scopatz}
+\submitteraddress{541 Main Street, Columbia, SC 29208}
+\submitteremail{scopatz@cec.sc.edu}
+
+
+% No more than three keywords, though each can be a phrase
+\keywords{nuclear fuel cycle, gaussian process, dynamic time warping}
+
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{booktabs} % nice rules for tables
+\usepackage{microtype} % if using PDF
+\usepackage{xspace}
+\usepackage{listings}
+\usepackage{textcomp}
+\usepackage[normalem]{ulem}
+\usepackage{amssymb}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\lstset{
+    %backgroundcolor=\color{lbcolor},
+    language={C++},
+    tabsize=4,
+    rulecolor=\color{black},
+    upquote=true,
+    aboveskip={1.5\baselineskip},
+    belowskip={1.5\baselineskip},
+    columns=fixed,
+    extendedchars=true,
+    breaklines=true,
+    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=single,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    basicstyle=\scriptsize\ttfamily\color{green!40!black},
+    keywordstyle=\color[rgb]{0,0,1.0},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{0.627,0.126,0.941},
+    numberstyle=\color[rgb]{0,1,0},
+    identifierstyle=\color{black},
+    captionpos=t,
+}
+
+\newcommand{\code}[1]{\lstinline[basicstyle=\ttfamily\color{green!40!black}]|#1|}
+\newcommand{\units}[1] {\:\text{#1}}%
+\newcommand{\SN}{S$_N$}
+\newcommand{\cyclus}{\textsc{Cyclus}\xspace}
+\newcommand{\Cyclus}{\cyclus}
+\newcommand{\citeme}{\textcolor{red}{CITE}\xspace}
+\newcommand{\cycpp}{\code{cycpp}\xspace}
+\newcommand{\TODO}[1] {{\color{red}\textbf{TODO: #1}}}%
+
+\newcommand{\comment}[1]{{\color{green}\textbf{#1}}}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\GP}{\mathpzc{GP}}
+\newcommand{\LWR}{\mathrm{LWR}}
+\newcommand{\FR}{\mathrm{FR}}
+\newcommand{\Total}{\mathrm{Total}}
+\newcommand{\argmin}{\mathrm{argmin}}
+\newcommand{\CYCLUS}{\mathrm{Cyclus}}
+\newcommand{\DYMOND}{\mathrm{DYMOND}}
+\newcommand{\I}{\mathbf{I}}
+\newcommand{\K}{\mathbf{K}}
+
+
+\date{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{abstract}
+This paper presents a new fuel cycle benchmarking analysis methodology
+by coupling Gaussian process regression, a popular technique in Machine
+Learning, to dynamic time warping, a mechanism widely used in speech
+recognition. Together they generate figures-of-merit for a suite of fuel
+cycle realizations. The figures-of-merit may be computed for any time
+series metric that is of interest to a benchmark. For a given metric,
+these figures-of-merit have the advantage that they reduce the
+dimensionality to a scalar and are thus directly comparable.
+The figures-of-merit
+account for uncertainty in the metric itself, utilize information
+across the whole time domain, and do not require that the simulators
+use a common time grid. Here, a distance measure is defined that can be used
+to compare the performance of each simulator for a given metric. Additionally,
+a contribution measure is derived from the distance measure that can be used
+to rank order the impact of different partitions of a fuel cycle metric.
+Lastly, this paper
+warns against using standard signal processing techniques for error reduction,
+as error reduction is better handled by the Gaussian process regression
+itself.
+\end{abstract}
+
+\input{intro}
+\input{setup}
+\input{gp}
+\input{dtw}
+\input{contribution}
+\input{filtering}
+\input{conclusion}
+\input{acknow}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{ans}
+\bibliography{refs}
+\end{document}
