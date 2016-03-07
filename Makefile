@@ -19,8 +19,10 @@ all-via-dvi:
 
 raw-via-pdf:
 	pdflatex $(latexopt) $(manuscript)
+	pdflatex $(latexopt) $(manuscript)
 
 raw-via-dvi:
+	latex $(latexopt) $(manuscript)
 	latex $(latexopt) $(manuscript)
 	dvipdf $(manuscript)
 
